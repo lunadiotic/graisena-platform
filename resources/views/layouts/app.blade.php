@@ -10,6 +10,8 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
+        @stack('styles')
+
 		<!-- App css -->
 		<link href="{{ asset('assets/css/config/default/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
 		<link href="{{ asset('assets/css/config/default/app.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
@@ -72,6 +74,8 @@
 
         <!-- Vendor js -->
         <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+
+        @stack('scripts')
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js') }}"></script>

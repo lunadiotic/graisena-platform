@@ -27,23 +27,16 @@
 
                 <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
-                        <i data-feather="list"></i>
-                        <span class="badge bg-success rounded-pill float-end">4</span>
-                        <span> Navigation </span>
+                        <i data-feather="file-text"></i>
+                        <span> Programs </span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="index.html">Dropdown 1</a>
+                                <a href="{{ route('program.create') }}">Add New</a>
                             </li>
                             <li>
-                                <a href="dashboard-2.html">Dropdown 2</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-3.html">Dropdown 3</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-4.html">Dropdown 4</a>
+                                <a href="{{ route('program.index') }}">Program</a>
                             </li>
                         </ul>
                     </div>
