@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProgramController extends Controller
@@ -16,7 +18,7 @@ class ProgramController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $model = Program::query();
+            $model = Program::orderBy('date', 'DESC');
             return DataTables::of($model)
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
@@ -51,7 +53,15 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        Program::create($request->except('attachment'));
+        if($request->hasFile('file_upload')) {
+            $file = $request->file('file_upload');
+            $fileExtension = $file->getClientOriginalExtension();
+            $fileName = now()->timestamp . '-' . 'attc-' . Str::slug($request->title) . '.' . $fileExtension;
+            Storage::disk('local')->putFileAs('program', $file, $fileName);
+            $request->merge(['attachment' => $fileName]);
+        }
+
+        Program::create($request->except('file_upload'));
         return redirect()->route('program.index');
     }
 
@@ -89,7 +99,17 @@ class ProgramController extends Controller
     public function update(Request $request, $id)
     {
         $data = Program::findOrFail($id);
-        $data->update($request->except('attachment'));
+        if($request->hasFile('file_upload')) {
+            $file = $request->file('file_upload');
+            $fileExtension = $file->getClientOriginalExtension();
+            $fileName = now()->timestamp . '-' . 'attc-' . Str::slug($request->title) . '.' . $fileExtension;
+            Storage::disk('local')->putFileAs('program', $file, $fileName);
+            $request->merge(['attachment' => $fileName]);
+            if ($data->attachment) {
+                Storage::disk('local')->delete('program/' . $data->attachment);
+            }
+        }
+        $data->update($request->except('file_upload'));
         return redirect()->route('program.index');
     }
 
@@ -102,6 +122,9 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         $data = Program::findOrFail($id);
+        if ($data->attachment) {
+            Storage::disk('local')->delete('program/' . $data->attachment);
+        }
         $data->delete();
         return redirect()->route('program.index');
     }

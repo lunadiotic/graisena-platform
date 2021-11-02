@@ -6,7 +6,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('program.update', $data->id) }}" method="POST">
+    <form action="{{ route('program.update', $data->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT') @csrf
         <!-- start page title -->
         <div class="row">
@@ -30,7 +30,7 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="date" class="form-label">Tanggal</label>
-                                    <input class="form-control" id="date" type="date" name="date" value="{{ old('date', $data->date) }}">
+                                    <input class="form-control" id="date" type="date" name="date" value="{{ old('date', $data->date->toDateString()) }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -66,8 +66,13 @@
                                     <input type="number" id="used" class="form-control" name="used" value="{{ old('used', $data->used) }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="attachment" class="form-label">Lampiran</label>
-                                    <input type="file" id="attachment" class="form-control" name="attachment">
+                                    <label for="file_upload" class="form-label">Lampiran</label>
+                                    <input type="file" id="file_upload" class="form-control" name="file_upload">
+                                   @if ($data->attachment)
+                                    <span class="text-primary">
+                                        Lampiran Tersedia: Download File
+                                    </span>
+                                   @endif
                                 </div>
                             </div> <!-- end col -->
                         </div>

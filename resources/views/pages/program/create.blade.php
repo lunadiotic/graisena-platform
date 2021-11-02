@@ -6,7 +6,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('program.store') }}" method="POST">
+    <form action="{{ route('program.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- start page title -->
         <div class="row">
@@ -66,8 +66,8 @@
                                     <input type="number" id="used" class="form-control" name="used" value="{{ old('used') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="attachment" class="form-label">Lampiran</label>
-                                    <input type="file" id="attachment" class="form-control" name="attachment">
+                                    <label for="file_upload" class="form-label">Lampiran</label>
+                                    <input type="file" id="file_upload" class="form-control" name="file_upload">
                                 </div>
                             </div> <!-- end col -->
                         </div>
