@@ -23,3 +23,6 @@ Auth::routes([
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('program', 'ProgramController');
+
+Route::get('/daftar/relawan', 'VolunteerRegController@index')->name('reg.volunteer');
+Route::post('/daftar/relawan', 'VolunteerRegController@store')->name('reg.volunteer');;
