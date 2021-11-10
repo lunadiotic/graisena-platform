@@ -41,6 +41,23 @@
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="#sidebarNursary" data-bs-toggle="collapse">
+                        <i data-feather="file-text"></i>
+                        <span> Nursary </span>
+                    </a>
+                    <div class="collapse" id="sidebarNursary">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('nursary.create') }}">Add New</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('nursary.index') }}">Nursary</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
 
         </div>
