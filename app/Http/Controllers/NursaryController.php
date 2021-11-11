@@ -23,7 +23,7 @@ class NursaryController extends Controller
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action_nursary', [
                         'model' => $model,
-                        'url_add_stock' => route('nursary.edit', $model->id),
+                        'url_add_stock' => route('stock.index', $model->id),
                         'url_add_distribution' => route('nursary.edit', $model->id),
                         'url_show' => route('nursary.show', $model->id),
                         'url_edit' => route('nursary.edit', $model->id),
@@ -67,9 +67,6 @@ class NursaryController extends Controller
      */
     public function show(nursary $nursary)
     {
-        // dd($nursary);
-        // $data = nursary::findOrFail($nursary);
-        // echo $data->manager;
         return view('pages.nursary.show')->withData($nursary);
     }
 

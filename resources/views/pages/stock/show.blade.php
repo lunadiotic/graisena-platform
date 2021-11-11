@@ -13,7 +13,7 @@
                 <div class="page-title-right">
                     <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
                 </div>
-                <h4 class="page-title">Detail: {{ $data->manager }}</h4>
+                <h4 class="page-title">Detail: {{ $data->title }}</h4>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Program</h4>
+                    <h4 class="header-title">Stock</h4>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0">
                             <tbody>
@@ -33,14 +33,29 @@
                                     <td>{{ $data->date->format('d/m/Y') }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Nama Pengelola</th>
+                                    <th scope="row">Jenis Tanaman</th>
                                     <td>:</td>
-                                    <td>{{ $data->manager }}</td>
+                                    <td>{{ $data->plant_type }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Location</th>
+                                    <th scope="row">Total Bibit</th>
                                     <td>:</td>
-                                    <td>{{ $data->location }}</td>
+                                    <td>{{ $data->total_seeds }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Total Bibit Rusak</th>
+                                    <td>:</td>
+                                    <td>{{ $data->total_broken_seeds }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Total Bibit Sehat</th>
+                                    <td>:</td>
+                                    <td>{{ $data->total_healthly_seeds }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Total Bibit Mati</th>
+                                    <td>:</td>
+                                    <td>{{ $data->total_dead_seeds }}</td>
                                 </tr>
                             </tbody>
                         </table>

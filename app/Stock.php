@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Stock;
+use App\nursary;
 
-class nursary extends Model
+class Stock extends Model
 {
+
     protected $guarded = [];
     protected $dates = [
         'date',
@@ -14,8 +15,8 @@ class nursary extends Model
         'published_at'
     ];
 
-    public function stocks()
+    public function nursary()
     {
-        return $this->hasMany(Stock::class);
+        return $this->belongsTo(nursary::class);
     }
 }
