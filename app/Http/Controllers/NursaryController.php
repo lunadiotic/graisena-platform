@@ -24,7 +24,7 @@ class NursaryController extends Controller
                     return view('layouts.partials._action_nursary', [
                         'model' => $model,
                         'url_add_stock' => route('stock.index', $model->id),
-                        'url_add_distribution' => route('nursary.edit', $model->id),
+                        'url_add_distribution' => route('distribution.index', $model->id),
                         'url_show' => route('nursary.show', $model->id),
                         'url_edit' => route('nursary.edit', $model->id),
                         'url_destroy' => route('nursary.destroy', $model->id)

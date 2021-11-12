@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Stock;
+use App\Distribution;
 
 class nursary extends Model
 {
@@ -17,5 +18,9 @@ class nursary extends Model
     public function stocks()
     {
         return $this->hasMany(Stock::class);
+    }
+    public function distributions()
+    {
+        return $this->hasMany(Distribution::class);
     }
 }
