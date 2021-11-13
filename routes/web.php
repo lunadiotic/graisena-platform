@@ -23,6 +23,21 @@ Auth::routes([
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('program', 'ProgramController');
-
-Route::get('/daftar/relawan', 'VolunteerRegController@index')->name('reg.volunteer');
-Route::post('/daftar/relawan', 'VolunteerRegController@store')->name('reg.volunteer');;
+Route::resource('nursary', 'NursaryController');
+//stock
+Route::get('/nursary/{nursary}/stock/', 'StockController@index')->name('stock.index');
+Route::get('/nursary/{nursary}/stock/create/', 'StockController@create')->name('stock.create');
+Route::post('/nursary/stock/store/', 'StockController@store')->name('stock.store');
+Route::get('/nursary/{stock}/stock/edit/', 'StockController@edit')->name('stock.edit');
+Route::patch('/nursary/{stock}/stock/update/', 'StockController@update')->name('stock.update');
+Route::get('/nursary/{stock}/stock/show/', 'StockController@show')->name('stock.show');
+Route::delete('/nursary/{stock}/stock/destroy/', 'StockController@destroy')->name('stock.destroy');
+//distribution
+Route::get('/nursary/{nursary}/distribution/', 'DistributionController@index')->name('distribution.index');
+Route::get('/nursary/{nursary}/distribution/create/', 'DistributionController@create')->name('distribution.create');
+Route::post('/nursary/distribution/store/', 'DistributionController@store')->name('distribution.store');
+Route::get('/nursary/{distribution}/distribution/edit/', 'DistributionController@edit')->name('distribution.edit');
+Route::patch('/nursary/{distribution}/distribution/update/', 'DistributionController@update')->name('distribution.update');
+// Route::patch('/nursary/{stock}/stock/update/', 'StockController@update')->name('stock.update');
+Route::get('/nursary/{distribution}/distribution/show/', 'DistributionController@show')->name('distribution.show');
+Route::delete('/nursary/{distribution}/distribution/destroy/', 'DistributionController@destroy')->name('distribution.destroy');
