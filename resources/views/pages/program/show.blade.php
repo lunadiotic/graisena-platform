@@ -20,7 +20,7 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-8">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Program</h4>
@@ -58,6 +58,17 @@
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
+
+        @if ($data->attachment)
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Attachment</h4>
+                    <a href="{{ route('download.program', ['file'=>$data->attachment]) }}" class="btn btn-primary">Download</a>
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+        @endif
     </div>
     <!-- end row-->
 

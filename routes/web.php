@@ -38,6 +38,8 @@ Route::get('/nursary/{nursary}/distribution/create/', 'DistributionController@cr
 Route::post('/nursary/distribution/store/', 'DistributionController@store')->name('distribution.store');
 Route::get('/nursary/{distribution}/distribution/edit/', 'DistributionController@edit')->name('distribution.edit');
 Route::patch('/nursary/{distribution}/distribution/update/', 'DistributionController@update')->name('distribution.update');
-// Route::patch('/nursary/{stock}/stock/update/', 'StockController@update')->name('stock.update');
 Route::get('/nursary/{distribution}/distribution/show/', 'DistributionController@show')->name('distribution.show');
 Route::delete('/nursary/{distribution}/distribution/destroy/', 'DistributionController@destroy')->name('distribution.destroy');
+
+// Download Attach File
+Route::get('/download/{file}/program', 'DownloadController@program')->name('download.program');

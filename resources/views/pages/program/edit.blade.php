@@ -70,7 +70,9 @@
                                     <input type="file" id="file_upload" class="form-control" name="file_upload">
                                    @if ($data->attachment)
                                     <span class="text-primary">
-                                        Lampiran Tersedia: Download File
+                                        <a href="{{ route('download.program', ['file'=>$data->attachment]) }}">
+                                            Lampiran Tersedia: Download File
+                                        </a>
                                     </span>
                                    @endif
                                 </div>
