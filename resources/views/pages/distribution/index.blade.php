@@ -16,9 +16,10 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
+                    <a href="{{ route('nursary.index') }}" class="btn btn-primary">Back</a>
                     <a href="{{ route('distribution.create', ['nursary'=>$data->id]) }}" class="btn btn-primary">Create</a>
                 </div>
-                <h4 class="page-title">Penanggung Jawab {{ $data->manager }}</h4>
+                <h4 class="page-title">Lokasi: {{ $data->location }}</h4>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@
 
                 <li>
                     <a href="#sidebarNursary" data-bs-toggle="collapse">
-                        <i data-feather="file-text"></i>
+                        <i data-feather="shield"></i>
                         <span> Nursary </span>
                     </a>
                     <div class="collapse" id="sidebarNursary">
