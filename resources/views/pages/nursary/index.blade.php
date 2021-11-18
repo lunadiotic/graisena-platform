@@ -15,10 +15,9 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <div class="page-title-right">
-                    <a href="{{ route('nursary.create') }}" class="btn btn-primary">Create</a>
+                <div class="page-title">
+                    <h4 class="page-title">Nursary</h4>
                 </div>
-                <h4 class="page-title">Nursary</h4>
             </div>
         </div>
     </div>
@@ -28,14 +27,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Basic Data Table</h4>
+                    <h4 class="header-title  d-flex justify-content-between">
+                        <span>Basic Data Table</span>
+                        <span>
+                            <a href="{{ route('nursary.create') }}" class="btn btn-sm btn-primary">Create</a>
+                        </span>
+                    </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Date</th>
+                                <th>Tite</th>
                                 <th>Manager</th>
-                                <th>Location</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -76,9 +79,8 @@
             ajax: "{{ route('nursary.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'date', name: 'date'},
+                {data: 'title', name: 'title'},
                 {data: 'manager', name: 'manager'},
-                {data: 'location', name: 'location'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

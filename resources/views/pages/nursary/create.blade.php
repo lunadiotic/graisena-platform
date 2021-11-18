@@ -12,10 +12,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                    </div>
-                    <h4 class="page-title">Create Program</h4>
+                    <h4 class="page-title">Create Nursary</h4>
                 </div>
             </div>
         </div>
@@ -25,17 +22,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Form</h4>
+                        <h4 class="header-title  d-flex justify-content-between">
+                            <span>Form</span>
+                            <span>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            </span>
+                        </h4>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="date" class="form-label">Tanggal</label>
-                                    <input class="form-control" id="date" type="date" name="date" value="{{ old('date') }}">
+                                    <label for="title" class="form-label">Nama Program</label>
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}">
                                 </div>
                             </div> <!-- end col -->
-                        </div>
-                        <!-- end row-->
-                        <div class="row">
+
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="manager" class="form-label">Nama Pengelola</label>
@@ -43,12 +43,6 @@
                                 </div>
                             </div> <!-- end col -->
 
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Lokasi</label>
-                                    <input type="text" id="location" class="form-control" name="location" value="{{ old('location') }}">
-                                </div>
-                            </div> <!-- end col -->
                         </div>
                         <!-- end row-->
                     </div> <!-- end card body-->

@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('program', 'ProgramController');
 Route::resource('nursary', 'NursaryController');
+Route::resource('seed', 'SeedController');
+Route::resource('distribution', 'DistributionController');
 //stock
 Route::get('/nursary/{nursary}/stock/', 'StockController@index')->name('stock.index');
 Route::get('/nursary/{nursary}/stock/create/', 'StockController@create')->name('stock.create');
@@ -32,14 +34,14 @@ Route::get('/nursary/{stock}/stock/edit/', 'StockController@edit')->name('stock.
 Route::patch('/nursary/{stock}/stock/update/', 'StockController@update')->name('stock.update');
 Route::get('/nursary/{stock}/stock/show/', 'StockController@show')->name('stock.show');
 Route::delete('/nursary/{stock}/stock/destroy/', 'StockController@destroy')->name('stock.destroy');
-//distribution
-Route::get('/nursary/{nursary}/distribution/', 'DistributionController@index')->name('distribution.index');
-Route::get('/nursary/{nursary}/distribution/create/', 'DistributionController@create')->name('distribution.create');
-Route::post('/nursary/distribution/store/', 'DistributionController@store')->name('distribution.store');
-Route::get('/nursary/{distribution}/distribution/edit/', 'DistributionController@edit')->name('distribution.edit');
-Route::patch('/nursary/{distribution}/distribution/update/', 'DistributionController@update')->name('distribution.update');
-Route::get('/nursary/{distribution}/distribution/show/', 'DistributionController@show')->name('distribution.show');
-Route::delete('/nursary/{distribution}/distribution/destroy/', 'DistributionController@destroy')->name('distribution.destroy');
+//distribution seed
+Route::get('/distribution/{distribution}/distribution/', 'DistributionSeedController@index')->name('distribution.index');
+Route::get('/distribution/{distribution}/distribution/create/', 'DistributionSeedController@create')->name('distribution.create');
+Route::post('/distribution/distribution/store/', 'DistributionSeedController@store')->name('distribution.store');
+Route::get('/distribution/{distribution_seed}/distribution/edit/', 'DistributionSeedController@edit')->name('distribution.edit');
+Route::patch('/distribution/{distribution_seed}/distribution/update/', 'DistributionSeedController@update')->name('distribution.update');
+Route::get('/distribution/{distribution_seed}/distribution/show/', 'DistributionSeedController@show')->name('distribution.show');
+Route::delete('/distribution/{distribution_seed}/distribution/destroy/', 'DistributionController@destroy')->name('distribution.destroy');
 
 // Download Attach File
 Route::get('/download/{file}/program', 'DownloadController@program')->name('download.program');

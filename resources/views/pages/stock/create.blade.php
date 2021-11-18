@@ -12,9 +12,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                    </div>
                     <h4 class="page-title">Create Stock</h4>
                 </div>
             </div>
@@ -25,21 +22,37 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Form</h4>
+                        <h4 class="header-title  d-flex justify-content-between">
+                            <span>Form</span>
+                            <span>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            </span>
+                        </h4>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="date" class="form-label">Tanggal Periksa</label>
-                                    <input class="form-control" id="date" type="date" name="date" value="{{ old('date') }}">
-                                    <input type="hidden" name="nursary_id" value="{{ $data->id }}">
+                                    <label for="date_check" class="form-label">Tanggal Periksa</label>
+                                    <input class="form-control" id="date_check" type="date" name="date_check" value="{{ old('date_check') }}">
+                                    <input type="hidden" name="nursary_id" value="{{ $nursary->id }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="plant_type" class="form-label">Jenis Tanaman</label>
-                                    <input type="text" id="plant_type" class="form-control" name="plant_type" value="{{ old('plant_type') }}">
+                                    <label for="seed" class="form-label">Nama Bibit</label>
+                                    <select id="seed" name="seed_id" class="form-control">
+                                        <option selected>Choose...</option>
+                                        @foreach ($seed as $item)
+                                        <option value="{{ $item->id }}">{{$item->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="seed_out" class="form-label">Bibit Keluar</label>
+                                    <input type="number" id="seed_out" class="form-control" name="seed_out" value="{{ old('seed_out') }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -47,26 +60,27 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="total_healthly_seeds" class="form-label">Total Bibit Sehat</label>
-                                    <input type="number" id="total_healthly_seeds" class="form-control" name="total_healthly_seeds" value="{{ old('total_healthly_seeds') }}">
+                                    <label for="seed_good" class="form-label">Bibit Sehat</label>
+                                    <input type="number" id="seed_good" class="form-control" name="seed_good" value="{{ old('seed_good') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="total_broken_seeds" class="form-label">Total Bibit Rusak</label>
-                                    <input type="number" id="total_broken_seeds" class="form-control" name="total_broken_seeds" value="{{ old('total_broken_seeds') }}">
+                                    <label for="seed_broken" class="form-label">Bibit Rusak</label>
+                                    <input type="number" id="seed_broken" class="form-control" name="seed_broken" value="{{ old('seed_broken') }}">
                                 </div>
                             </div> <!-- end col -->
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="total_dead_seeds" class="form-label">Total Bibit Mati</label>
-                                    <input type="number" id="total_dead_seeds" class="form-control" name="total_dead_seeds" value="{{ old('total_dead_seeds') }}">
+                                    <label for="seed_death" class="form-label">Bibit Mati</label>
+                                    <input type="number" id="seed_death" class="form-control" name="seed_death" value="{{ old('seed_death') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="total_seeds" class="form-label">Total Bibit</label>
-                                    <input type="number" id="total_seeds" class="form-control" name="total_seeds" value="{{ old('total_seeds') }}" >
+                                    <label for="total_seed" class="form-label">Total Bibit</label>
+                                    <input type="number" id="total_seed" class="form-control" name="total_seed" value="{{ old('total_seed') }}" >
                                 </div>
                             </div> <!-- end col -->
                         </div>
+
                         <!-- end row-->
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
@@ -95,14 +109,15 @@
 </div> <!-- container -->
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
 <script>
-    $('#total_dead_seeds').change(function() {
-        let broken = $('#total_broken_seeds').val();
-        let health = $('#total_healthly_seeds').val();
-        let dead = $('#total_dead_seeds').val();
-        let total = broken + health + dead;
-        $('#total_seeds').val(total)
+    $('#seed_broken').change(function() {
+        let good = $('#seed_good').val();
+        let out = $('#seed_out').val();
+        let death = $('#seed_death').val();
+        let broken = $('#seed_broken').val();
+        let total = parseInt(good) + parseInt(broken) + parseInt(death) - parseInt(out);
+        $('#total_seed').val(total)
     })
 </script>
-@endpush --}}
+@endpush

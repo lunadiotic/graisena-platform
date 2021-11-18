@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Nursary;
+use App\DistributionSeed;
 
 class Distribution extends Model
 {
@@ -14,6 +16,11 @@ class Distribution extends Model
 
     public function nursary()
     {
-        return $this->belongsTo(nursary::class);
+        return $this->belongsTo(Nursary::class);
+    }
+
+    public function distribution_seeds()
+    {
+        return $this->belongsTo(DistributionSeed::class);
     }
 }

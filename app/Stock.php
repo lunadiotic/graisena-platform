@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\nursary;
+use App\Nursary;
+use App\Seed;
 
 class Stock extends Model
 {
-
     protected $guarded = [];
     protected $dates = [
-        'date',
+        'date_check',
         'created_at',
         'published_at'
     ];
@@ -18,5 +18,10 @@ class Stock extends Model
     public function nursary()
     {
         return $this->belongsTo(nursary::class);
+    }
+
+    public function seed()
+    {
+        return $this->belongsTo(Seed::class);
     }
 }

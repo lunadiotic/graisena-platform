@@ -58,6 +58,37 @@
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="#sidebardistribution" data-bs-toggle="collapse">
+                        <i data-feather="shield"></i>
+                        <span> Distribution </span>
+                    </a>
+                    <div class="collapse" id="sidebardistribution">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('distribution.create') }}">Add</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('distribution.index') }}">Distribution</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebardatamaster" data-bs-toggle="collapse">
+                        <i data-feather="shield"></i>
+                        <span> Data Master </span>
+                    </a>
+                    <div class="collapse" id="sidebardatamaster">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('seed.index') }}">Seed</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
 
         </div>
