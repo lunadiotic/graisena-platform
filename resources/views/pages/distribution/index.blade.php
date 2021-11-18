@@ -37,6 +37,7 @@
                                 <th>No</th>
                                 <th>Judul</th>
                                 <th>Lokasi</th>
+                                <th>Distribution Seed</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -79,6 +80,7 @@
                 {data: 'DT_RowIndex', name: 'id'},
                 {data: 'title', name: 'title'},
                 {data: 'location', name: 'location'},
+                {data: 'add', name: 'add'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

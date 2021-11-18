@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Detail: {{ $data->title }}</h4>
+                <h4 class="page-title">Detail: {{ $distribution->title }}</h4>
             </div>
         </div>
     </div>
@@ -32,28 +32,53 @@
                                 <tr>
                                     <th scope="row">Nursary</th>
                                     <td>:</td>
-                                    <td>{{ $data->nursary->title }}</td>
+                                    <td>{{ $distribution->nursary->title }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Judul</th>
                                     <td>:</td>
-                                    <td>{{ $data->title }}</td>
+                                    <td>{{ $distribution->title }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Lokasi</th>
                                     <td>:</td>
-                                    <td>{{ $data->location }}</td>
+                                    <td>{{ $distribution->location }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Longitude</th>
                                     <td>:</td>
-                                    <td>{{ $data->longitude }}</td>
+                                    <td>{{ $distribution->longitude }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Latitude</th>
                                     <td>:</td>
-                                    <td>{{ $data->latitude }}</td>
+                                    <td>{{ $distribution->latitude }}</td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    <!-- end row-->
+
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title  d-flex justify-content-between">
+                        <span>Bibit</span>
+                    </h4>
+                    <div class="table-responsive">
+                        <table class="table table-borderless mb-0">
+                            <tbody>
+                                @foreach ($seed->distribution_seeds as $item)
+                                <tr>
+                                    <th scope="row">{{ $item->seed->title }}</th>
+                                    <td>:</td>
+                                    <td>{{ $item->total }}</td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

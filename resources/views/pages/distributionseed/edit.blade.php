@@ -6,16 +6,13 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-<form action="{{ route('distribution.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('distribution.seed.update', ['distribution_seed'=>$distribution->id]) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH') @csrf
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                    </div>
-                    <h4 class="page-title">Edit Program</h4>
+                    <h4 class="page-title">Edit Distribution Seed</h4>
                 </div>
             </div>
         </div>
@@ -25,47 +22,32 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Form</h4>
+                        <h4 class="header-title  d-flex justify-content-between">
+                            <span>Form</span>
+                            <span>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            </span>
+                        </h4>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="name_activity" class="form-label">Nama Kegiatan</label>
-                                    <input class="form-control" id="name_activity" type="name_activity" name="name_activity" value="{{ old('name_activity', $data->name_activity ) }}">
-                                    <input type="hidden" name="nursary_id" value="{{ $data->nursary_id }}">
+                                    <label for="seed" class="form-label">Nama Bibit</label>
+                                    <select id="seed" name="seed_id" class="form-control">
+                                        <option selected>Choose...</option>
+                                        @foreach ($seed as $item)
+                                        <option value="{{ $item->id }}" {{ $distribution->seed_id == $item->id ? 'selected' : ''}}>{{$item->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="distribution_id" value="{{ $distribution->distribution_id }}">
                                 </div>
                             </div> <!-- end col -->
-                        </div>
-                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="location" class="form-label">Lokasi</label>
-                                    <input type="text" id="location" class="form-control" name="location" value="{{ old('location' , $data->location) }}">
+                                    <label for="total" class="form-label">Total</label>
+                                    <input type="text" id="total" class="form-control" name="total" value="{{ old('total', $distribution->total) }}">
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="partner" class="form-label">Partner</label>
-                                    <input type="text" id="partner" class="form-control" name="partner" value="{{ old('partner', $data->partner) }}">
-                                </div>
-                            </div> <!-- end col -->
                         </div>
-                        <!-- end row-->
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="total_seed" class="form-label">Total Bibit</label>
-                                    <input type="number" id="total_seed" class="form-control" name="total_seed" value="{{ old('total_seed' , $data->total_seed) }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="type_seed" class="form-label">Tipe Bibit</label>
-                                    <input type="text" id="type_seed" class="form-control" name="type_seed" value="{{ old('type_seed', $data->type_seed) }}">
-                                </div>
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row-->
-                        <!-- end row-->
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->

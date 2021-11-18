@@ -21,6 +21,6 @@ class Distribution extends Model
 
     public function distribution_seeds()
     {
-        return $this->belongsTo(DistributionSeed::class);
+        return $this->hasMany(DistributionSeed::class);
     }
 }
