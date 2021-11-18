@@ -67,7 +67,7 @@
                     <div class="collapse" id="sidebardistribution">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('distribution.create') }}">Add</a>
+                                <a href="{{ route('distribution.create') }}">Add New</a>
                             </li>
                             <li>
                                 <a href="{{ route('distribution.index') }}">Distribution</a>

@@ -29,13 +29,7 @@
                             </span>
                         </h4>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="title" class="form-label">Judul Program</label>
-                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $distribution->title) }}">
-                                </div>
-                            </div> <!-- end col -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="nursary" class="form-label">Nama Nursary</label>
                                     <select id="nursary" name="nursary_id" class="form-control">
@@ -47,13 +41,24 @@
                                 </div>
                             </div> <!-- end col -->
                         </div>
-                        <!-- end row-->
                         <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Judul Program</label>
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $distribution->title) }}">
+                                </div>
+                            </div> <!-- end col -->
+
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Lokasi</label>
                                     <input type="text" id="location" class="form-control" name="location" value="{{ old('location', $distribution->location) }}">
                                 </div>
+                            </div>
+                        </div>
+                        <!-- end row-->
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="longitude" class="form-label">Longitude</label>
                                     <input type="text" id="longitude" class="form-control" name="longitude" value="{{ old('longitude', $distribution->longitude) }}">
