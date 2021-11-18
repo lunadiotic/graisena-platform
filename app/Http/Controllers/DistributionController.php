@@ -17,8 +17,13 @@ class DistributionController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $model = Distribution::all();
+            $model = Distribution::query();
             return DataTables::of($model)
+                ->addColumn('add', function($model) {
+                    return view('layouts.partials._add', [
+                        'route' => route('distribution.seed.index', $model->id)
+                    ]);
+                })
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
@@ -65,7 +70,12 @@ class DistributionController extends Controller
      */
     public function show(Distribution $distribution)
     {
-        return view('pages.distribution.show')->withData($distribution);
+        $data = [
+            'distribution' => $distribution,
+            'seed' => $distribution->load('distribution_seeds')
+        ];
+        // dd($data);
+        return view('pages.distribution.show')->with($data);
     }
 
     /**
