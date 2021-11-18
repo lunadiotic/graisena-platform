@@ -15,6 +15,9 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
+                <div class="page-title-right">
+                    <a href="{{ route('program.create') }}" class="btn btn-primary">Create</a>
+                </div>
                 <h4 class="page-title">Programs</h4>
             </div>
         </div>
@@ -25,18 +28,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title d-flex justify-content-between">
-                        <span>Basic Data Table</span>
-                        <span>
-                            <a href="{{ route('program.create') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
-                        </span>
-                    </h4>
+                    <h4 class="header-title">Basic Data Table</h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Date</th>
                                 <th>Program</th>
-                                <th>Subprogram</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -77,8 +75,8 @@
             ajax: "{{ route('program.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
+                {data: 'date', name: 'date'},
                 {data: 'title', name: 'title'},
-                {data: 'add', name: 'add', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

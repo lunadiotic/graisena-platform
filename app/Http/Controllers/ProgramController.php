@@ -18,8 +18,13 @@ class ProgramController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $model = Program::orderBy('date', 'DESC');
+            $model = Program::query();
             return DataTables::of($model)
+                ->addColumn('add', function($model) {
+                    return view('layouts.partials._add', [
+                        'route' => ''
+                    ]);
+                })
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
@@ -53,15 +58,7 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('file_upload')) {
-            $file = $request->file('file_upload');
-            $fileExtension = $file->getClientOriginalExtension();
-            $fileName = now()->timestamp . '-' . 'attc-' . Str::slug($request->title) . '.' . $fileExtension;
-            Storage::disk('local')->putFileAs('program', $file, $fileName);
-            $request->merge(['attachment' => $fileName]);
-        }
-
-        Program::create($request->except('file_upload'));
+        Program::create($request->all());
         return redirect()->route('program.index');
     }
 
@@ -99,17 +96,7 @@ class ProgramController extends Controller
     public function update(Request $request, $id)
     {
         $data = Program::findOrFail($id);
-        if($request->hasFile('file_upload')) {
-            $file = $request->file('file_upload');
-            $fileExtension = $file->getClientOriginalExtension();
-            $fileName = now()->timestamp . '-' . 'attc-' . Str::slug($request->title) . '.' . $fileExtension;
-            Storage::disk('local')->putFileAs('program', $file, $fileName);
-            $request->merge(['attachment' => $fileName]);
-            if ($data->attachment) {
-                Storage::disk('local')->delete('program/' . $data->attachment);
-            }
-        }
-        $data->update($request->except('file_upload'));
+        $data->update($request->all());
         return redirect()->route('program.index');
     }
 
@@ -122,9 +109,6 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         $data = Program::findOrFail($id);
-        if ($data->attachment) {
-            Storage::disk('local')->delete('program/' . $data->attachment);
-        }
         $data->delete();
         return redirect()->route('program.index');
     }
