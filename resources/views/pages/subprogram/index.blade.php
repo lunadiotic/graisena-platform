@@ -15,10 +15,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <div class="page-title-right">
-                    <a href="{{ route('program.create') }}" class="btn btn-primary">Create</a>
-                </div>
-                <h4 class="page-title">Programs</h4>
+                <h4 class="page-title">Subprogram: {{ $program->title }}</h4>
             </div>
         </div>
     </div>
@@ -28,13 +25,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Basic Data Table</h4>
+                    <h4 class="header-title d-flex justify-content-between">
+                        <span>Basic Data Table</span>
+                        <span>
+                            <a href="{{ route('subprogram.create', $program->id) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
+                        </span>
+                    </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Date</th>
                                 <th>Program</th>
+                                <th>Lokasi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,11 +75,12 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('program.index') }}",
+            ajax: "{{ route('subprogram.index', $program->id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'date', name: 'date'},
-                {data: 'title', name: 'title'},
+                {data: 'date_start', name: 'date_start'},
+                {data: 'program.title', name: 'program.title'},
+                {data: 'location', name: 'location'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

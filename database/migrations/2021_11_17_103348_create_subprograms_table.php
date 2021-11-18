@@ -25,7 +25,6 @@ class CreateSubprogramsTable extends Migration
             $table->double('budget')->nullable();
             $table->double('used')->nullable();
             $table->double('balance')->nullable();
-            $table->string('attachment')->nullable();
             $table->unsignedInteger('total_male')->nullable();
             $table->unsignedInteger('total_female')->nullable();
             $table->unsignedInteger('range_age_1')->nullable(); //10-19
@@ -34,6 +33,7 @@ class CreateSubprogramsTable extends Migration
             $table->unsignedInteger('range_age_4')->nullable(); //40-49
             $table->unsignedInteger('range_age_5')->nullable(); //50-59
             $table->unsignedInteger('range_age_6')->nullable(); //60~
+            $table->string('attachment')->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class ProgramController extends Controller
             return DataTables::of($model)
                 ->addColumn('add', function($model) {
                     return view('layouts.partials._add', [
-                        'route' => ''
+                        'route' => route('subprogram.index', $model->id)
                     ]);
                 })
                 ->addColumn('action', function ($model) {
