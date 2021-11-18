@@ -20,6 +20,8 @@ class CreateVolunteersTable extends Migration
             $table->date('date_of_birth');
             $table->enum('status_of_marital', ['s', 'm', 'd', 'w'])->default('s');
             $table->enum('status_of_job', ['s', 'w', 'n'])->default('n');
+            $table->unsignedBigInteger('province_id');
+            $table->unsignedBigInteger('regency_id');
             $table->string('address');
             $table->string('email')->nullable();
             $table->string('phone');

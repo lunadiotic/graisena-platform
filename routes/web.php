@@ -22,6 +22,9 @@ Auth::routes([
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/daftar/relawan', 'VolunteerRegController@index')->name('reg.volunteer');
+Route::post('/daftar/relawan', 'VolunteerRegController@store')->name('reg.volunteer');;
+
 Route::resource('program', 'ProgramController');
 Route::resource('program/{id}/subprogram', 'SubprogramController');
 Route::resource('nursary', 'NursaryController');
