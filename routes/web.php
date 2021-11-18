@@ -23,6 +23,7 @@ Auth::routes([
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('program', 'ProgramController');
+Route::resource('program/{id}/subprogram', 'SubprogramController');
 Route::resource('nursary', 'NursaryController');
 //stock
 Route::get('/nursary/{nursary}/stock/', 'StockController@index')->name('stock.index');
