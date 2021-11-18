@@ -99,6 +99,7 @@
                                 <label for="province_id" class="form-label">Provinsi</label>
                                 <select name="province_id" id="province_id"
                                     class="form-control  @error('province_id') is-invalid @enderror">
+                                    <option value="">-</option>
                                     @foreach ($provinces as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
