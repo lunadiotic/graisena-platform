@@ -16,7 +16,7 @@ class VolunteerRegController extends Controller
     public function index()
     {
         $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
-        return view('pages.volunteer.index')->with([
+        return view('pages.regvolunteer.index')->with([
             'provinces' => $provinces
         ]);
     }
