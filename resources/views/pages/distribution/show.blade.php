@@ -10,9 +10,6 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <div class="page-title-right">
-                    <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                </div>
                 <h4 class="page-title">Detail: {{ $data->title }}</h4>
             </div>
         </div>
@@ -23,7 +20,12 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Program</h4>
+                    <h4 class="header-title  d-flex justify-content-between">
+                        <span>Distribution</span>
+                        <span>
+                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                        </span>
+                    </h4>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0">
                             <tbody>
