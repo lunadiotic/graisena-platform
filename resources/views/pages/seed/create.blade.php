@@ -6,13 +6,13 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('nursary.update', $data->id) }}" method="POST" enctype="multipart/form-data">
-        @method('PUT') @csrf
+    <form action="{{ route('seed.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Edit Nursary</h4>
+                    <h4 class="page-title">Create Bibit</h4>
                 </div>
             </div>
         </div>
@@ -31,15 +31,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Nama Program</label>
-                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $data->title) }}">
-                                </div>
-                            </div> <!-- end col -->
-                            
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="manager" class="form-label">Nama Pengelola</label>
-                                    <input type="text" id="manager" class="form-control" name="manager" value="{{ old('manager', $data->manager) }}">
+                                    <label for="title" class="form-label">Nama</label>
+                                    <input class="form-control" id="title" type="text" name="title" value="{{ old('title') }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -59,14 +52,23 @@
                                 Reset
                             </a>
                             <button type="submit" class="btn btn-outline-primary">
-                                Update
+                                Save
                             </button>
                         </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
         </div>
+        <!-- end row-->
     </form>
 </div> <!-- container -->
 @endsection
 
+@push('scripts')
+<script>
+    $('#used').change(function() {
+        let balance = $('#budget').val() - $('#used').val();
+        $('#balance').val(balance)
+    })
+</script>
+@endpush

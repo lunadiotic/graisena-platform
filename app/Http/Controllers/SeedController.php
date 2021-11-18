@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Nursary;
+use App\Seed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
-class NursaryController extends Controller
+class SeedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,22 +18,21 @@ class NursaryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $model = Nursary::query();
+            $model = Seed::all();
             return DataTables::of($model)
                 ->addColumn('action', function ($model) {
-                    return view('layouts.partials._action_nursary', [
+                    return view('layouts.partials._action', [
                         'model' => $model,
-                        'url_add_stock' => route('stock.index', $model->id),
-                        'url_show' => route('nursary.show', $model->id),
-                        'url_edit' => route('nursary.edit', $model->id),
-                        'url_destroy' => route('nursary.destroy', $model->id)
+                        'url_show' => ('#'),
+                        'url_edit' => route('seed.edit', $model->id),
+                        'url_destroy' => route('seed.destroy', $model->id)
                     ]);
                 })
                 ->addIndexColumn()
                 ->rawColumns(['action'])->make(true);
         }
 
-        return view('pages.nursary.index');
+        return view('pages.seed.index');
     }
 
     /**
@@ -43,7 +42,7 @@ class NursaryController extends Controller
      */
     public function create()
     {
-        return view('pages.nursary.create');
+        return view('pages.seed.create');
     }
 
     /**
@@ -54,54 +53,54 @@ class NursaryController extends Controller
      */
     public function store(Request $request)
     {
-        nursary::create($request->all());
-        return view('pages.nursary.index');
+        Seed::create($request->all());
+        return view('pages.seed.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\nursary  $nursary
+     * @param  \App\Seed  $seed
      * @return \Illuminate\Http\Response
      */
-    public function show(Nursary $nursary)
+    public function show(Seed $seed)
     {
-        return view('pages.nursary.show')->withData($nursary);
+        return view('pages.seed.show')->withData($seed);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Nursary  $nursary
+     * @param  \App\Seed  $seed
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nursary $nursary)
+    public function edit(Seed $seed)
     {
-        return view('pages.nursary.edit')->withData($nursary);
+        return view('pages.seed.edit')->withData($seed);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\nursary  $nursary
+     * @param  \App\Seed  $seed
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nursary $nursary)
+    public function update(Request $request, Seed $seed)
     {
-        $nursary->update($request->all());
-        return view('pages.nursary.index');
+        $seed->update($request->all());
+        return view('pages.seed.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Nursary  $nursary
+     * @param  \App\Seed  $seed
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nursary $nursary)
+    public function destroy(Seed $seed)
     {
-        $nursary->delete();
-        return view('pages.nursary.index');
+        $seed->delete();
+        return view('pages.seed.index');
     }
 }

@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\nursary;
 use App\Distribution;
+use App\Nursary;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class DistributionController extends Controller
 {
-    public function index(Request $request, Nursary $nursary)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
         if ($request->ajax()) {
-            $model = $nursary->distributions();
+            $model = Distribution::all();
             return DataTables::of($model)
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
@@ -26,40 +31,81 @@ class DistributionController extends Controller
                 ->rawColumns(['action'])->make(true);
         }
 
-        return view('pages.distribution.index')->withData($nursary);
+        return view('pages.distribution.index');
     }
 
-    public function create(Nursary $nursary)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
+        $nursary = Nursary::all();
         return view('pages.distribution.create')->withData($nursary);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         Distribution::create($request->all());
-        return redirect()->route('distribution.index', ['nursary'=>$request->nursary_id]);
+        return view('pages.distribution.index');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Distribution  $Distribution
+     * @return \Illuminate\Http\Response
+     */
     public function show(Distribution $distribution)
     {
         return view('pages.distribution.show')->withData($distribution);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Distribution  $Distribution
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Distribution $distribution)
     {
-        // dd($distribution);
-        return view('pages.distribution.edit')->withData($distribution);
+        $data = [
+            'nursary' => Nursary::all(),
+            'distribution' => $distribution
+
+        ];
+        return view('pages.distribution.edit')->with($data);
     }
 
-    public function update(Distribution $distribution, Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Distribution  $Distribution
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Distribution $distribution)
     {
         $distribution->update($request->all());
-        return redirect()->route('distribution.index', ['nursary'=>$request->nursary_id]);
+        return view('pages.distribution.index');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Distribution  $Distribution
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Distribution $distribution)
     {
         $distribution->delete();
-        return redirect()->route('distribution.index', ['nursary'=>$distribution->nursary_id]);
+        return view('pages.distribution.index');
     }
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\nursary;
+use App\Nursary;
+use App\Seed;
 use App\Stock;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -11,9 +12,13 @@ class StockController extends Controller
 {
     public function index(Request $request, Nursary $nursary)
     {
+        // dd($nursary);
         if ($request->ajax()) {
             $model = $nursary->stocks();
             return DataTables::of($model)
+                ->addColumn('seed', function($model){
+                    return $model->seed->title;
+                })
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
@@ -31,7 +36,11 @@ class StockController extends Controller
 
     public function create(Nursary $nursary)
     {
-        return view('pages.stock.create')->withData($nursary);
+        $data = [
+            'nursary' => $nursary,
+            'seed' => Seed::all(),
+        ];
+        return view('pages.stock.create')->with($data);
     }
 
     public function store(Request $request)
@@ -47,8 +56,11 @@ class StockController extends Controller
 
     public function edit(Stock $stock)
     {
-        // dd($stock);
-        return view('pages.stock.edit')->withData($stock);
+        $data = [
+            'stock' => $stock,
+            'seed' => Seed::all(),
+        ];
+        return view('pages.stock.edit')->with($data);
     }
 
     public function update(Stock $stock, Request $request)

@@ -28,39 +28,29 @@
                         <table class="table table-borderless mb-0">
                             <tbody>
                                 <tr>
-                                    <th scope="row" style="width: 15%">Tanggal</th>
+                                    <th scope="row" style="width: 15%">Partner</th>
                                     <td style="width: 5%">:</td>
-                                    <td>{{ $data->date_check->format('d/m/Y') }}</td>
+                                    <td>{{ $data->partner }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Nama Bibit</th>
+                                    <th scope="row">Nama Kegiatan</th>
                                     <td>:</td>
-                                    <td>{{ $data->seed->title }}</td>
+                                    <td>{{ $data->name_activity }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Lokasi</th>
+                                    <td>:</td>
+                                    <td>{{ $data->location }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Jenis Bibit</th>
+                                    <td>:</td>
+                                    <td>{{ $data->type_seed }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Bibit</th>
                                     <td>:</td>
                                     <td>{{ $data->total_seed }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bibit Rusak</th>
-                                    <td>:</td>
-                                    <td>{{ $data->seed_broken }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bibit Sehat</th>
-                                    <td>:</td>
-                                    <td>{{ $data->seed_good }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bibit Mati</th>
-                                    <td>:</td>
-                                    <td>{{ $data->seed_death }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Bibit Keluar</th>
-                                    <td>:</td>
-                                    <td>{{ $data->seed_out }}</td>
                                 </tr>
                             </tbody>
                         </table>

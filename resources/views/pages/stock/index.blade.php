@@ -15,11 +15,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <div class="page-title-right">
-                    <a href="{{ route('nursary.index') }}" class="btn btn-primary">Back</a>
-                    <a href="{{ route('stock.create', ['nursary'=>$data->id]) }}" class="btn btn-primary">Create</a>
-                </div>
-                <h4 class="page-title">Lokasi: {{ $data->location }}</h4>
+                <h4 class="page-title">Program: {{ $data->title }}</h4>
             </div>
         </div>
     </div>
@@ -29,13 +25,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Basic Data Table</h4>
+                    <h4 class="header-title  d-flex justify-content-between">
+                        <span>Basic Data Table</span>
+                        <span>
+                            <a href="{{ route('nursary.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            <a href="{{ route('stock.create', ['nursary'=>$data->id]) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
+                        </span>
+                    </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Date</th>
-                                <th>Jenis Tanaman</th>
+                                <th>Bibit</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -76,8 +78,8 @@
             ajax: "{{ route('stock.index', $data->id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'date', name: 'date'},
-                {data: 'plant_type', name: 'plant_type'},
+                {data: 'seed', name: 'seed'},
+                {data: 'total_seed', name: 'total_seed'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

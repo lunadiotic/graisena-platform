@@ -6,13 +6,16 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('nursary.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('seed.update', $data->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT') @csrf
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Edit Nursary</h4>
+                    <div class="page-title-right">
+                        <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+                    </div>
+                    <h4 class="page-title">Edit Program</h4>
                 </div>
             </div>
         </div>
@@ -22,28 +25,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title  d-flex justify-content-between">
-                            <span>Form</span>
-                            <span>
-                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
-                            </span>
-                        </h4>
+                        <h4 class="header-title">Form</h4>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Nama Program</label>
-                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $data->title) }}">
-                                </div>
-                            </div> <!-- end col -->
-                            
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="manager" class="form-label">Nama Pengelola</label>
-                                    <input type="text" id="manager" class="form-control" name="manager" value="{{ old('manager', $data->manager) }}">
+                                    <label for="title" class="form-label">Nama</label>
+                                    <input class="form-control" id="title" type="text" name="title" value="{{ old('title', $data->title) }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>
-                        <!-- end row-->
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
@@ -59,14 +49,23 @@
                                 Reset
                             </a>
                             <button type="submit" class="btn btn-outline-primary">
-                                Update
+                                Save
                             </button>
                         </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
         </div>
+        <!-- end row-->
     </form>
 </div> <!-- container -->
 @endsection
 
+@push('scripts')
+<script>
+    $('#used').change(function() {
+        let balance = $('#budget').val() - $('#used').val();
+        $('#balance').val(balance)
+    })
+</script>
+@endpush

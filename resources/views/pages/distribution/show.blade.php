@@ -20,22 +20,22 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Stock</h4>
+                    <h4 class="header-title">Program</h4>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0">
                             <tbody>
                                 <tr>
-                                    <th scope="row" style="width: 15%">Partner</th>
-                                    <td style="width: 5%">:</td>
-                                    <td>{{ $data->partner }}</td>
+                                    <th scope="row">Nursary</th>
+                                    <td>:</td>
+                                    <td>{{ $data->nursary->title }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Nama Kegiatan</th>
+                                    <th scope="row">Judul</th>
                                     <td>:</td>
-                                    <td>{{ $data->name_activity }}</td>
+                                    <td>{{ $data->title }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Lokasi</th>
@@ -43,14 +43,14 @@
                                     <td>{{ $data->location }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Jenis Bibit</th>
+                                    <th scope="row">Longitude</th>
                                     <td>:</td>
-                                    <td>{{ $data->type_seed }}</td>
+                                    <td>{{ $data->longitude }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Total Bibit</th>
+                                    <th scope="row">Latitude</th>
                                     <td>:</td>
-                                    <td>{{ $data->total_seed }}</td>
+                                    <td>{{ $data->latitude }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -58,7 +58,6 @@
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
-    </div>
     <!-- end row-->
 </div> <!-- container -->
 @endsection

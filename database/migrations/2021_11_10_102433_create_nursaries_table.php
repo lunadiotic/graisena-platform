@@ -15,9 +15,8 @@ class CreateNursariesTable extends Migration
     {
         Schema::create('nursaries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->string('manager');
-            $table->date('date');
-            $table->string('location');
             $table->timestamps();
         });
     }
