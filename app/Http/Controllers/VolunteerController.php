@@ -10,6 +10,16 @@ use Yajra\DataTables\Facades\DataTables;
 class VolunteerController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -55,6 +65,23 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required'],
+            'gender' => ['required'],
+            'date_of_birth' => ['required'],
+            'status_of_marital' => ['required'],
+            'status_of_job' => ['required'],
+            'province_id' => ['required'],
+            'regency_id' => ['required'],
+            'address' => ['required'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'numeric'],
+            'media_social' => ['nullable'],
+            'affiliate' => ['nullable'],
+            'skill' => ['nullable'],
+            'active' => ['required'],
+        ]);
+
         Volunteer::create($request->all());
         return redirect()->route('volunteer.index');
     }
@@ -96,6 +123,22 @@ class VolunteerController extends Controller
     public function update(Request $request, $id)
     {
         $data = Volunteer::findOrFail($id);
+        $this->validate($request, [
+            'name' => ['required'],
+            'gender' => ['required'],
+            'date_of_birth' => ['required'],
+            'status_of_marital' => ['required'],
+            'status_of_job' => ['required'],
+            'province_id' => ['required'],
+            'regency_id' => ['required'],
+            'address' => ['required'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'numeric'],
+            'media_social' => ['nullable'],
+            'affiliate' => ['nullable'],
+            'skill' => ['nullable'],
+            'active' => ['required'],
+        ]);
         $data->update($request->all());
         return redirect()->route('volunteer.index');
     }

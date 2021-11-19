@@ -10,13 +10,22 @@ use Yajra\DataTables\Facades\DataTables;
 
 class StockController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, Nursary $nursary)
     {
-        // dd($nursary);
         if ($request->ajax()) {
             $model = $nursary->stocks();
             return DataTables::of($model)
-                ->addColumn('seed', function($model){
+                ->addColumn('seed', function ($model) {
                     return $model->seed->title;
                 })
                 ->addColumn('action', function ($model) {
@@ -45,8 +54,18 @@ class StockController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nursary_id' => ['required', 'numeric'],
+            'seed_id' => ['required', 'numeric'],
+            'date_check' => ['required', 'date'],
+            'seed_good' => ['required', 'numeric'],
+            'seed_broken' => ['required', 'numeric'],
+            'seed_death' => ['required', 'numeric'],
+            'seed_out' => ['required', 'numeric'],
+            'total_seed' => ['required', 'numeric'],
+        ]);
         Stock::create($request->all());
-        return redirect()->route('stock.index', ['nursary'=>$request->nursary_id]);
+        return redirect()->route('stock.index', ['nursary' => $request->nursary_id]);
     }
 
     public function show(Stock $stock)
@@ -65,13 +84,23 @@ class StockController extends Controller
 
     public function update(Stock $stock, Request $request)
     {
+        $this->validate($request, [
+            'nursary_id' => ['required', 'numeric'],
+            'seed_id' => ['required', 'numeric'],
+            'date_check' => ['required', 'date'],
+            'seed_good' => ['required', 'numeric'],
+            'seed_broken' => ['required', 'numeric'],
+            'seed_death' => ['required', 'numeric'],
+            'seed_out' => ['required', 'numeric'],
+            'total_seed' => ['required', 'numeric'],
+        ]);
         $stock->update($request->all());
-        return redirect()->route('stock.index', ['nursary'=>$request->nursary_id]);
+        return redirect()->route('stock.index', ['nursary' => $request->nursary_id]);
     }
 
     public function destroy(Stock $stock)
     {
         $stock->delete();
-        return redirect()->route('stock.index', ['nursary'=>$stock->nursary_id]);
+        return redirect()->route('stock.index', ['nursary' => $stock->nursary_id]);
     }
 }

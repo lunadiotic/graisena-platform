@@ -62,7 +62,7 @@
                 <li>
                     <a href="#sidebarNursary" data-bs-toggle="collapse">
                         <i data-feather="shield"></i>
-                        <span> Nursary </span>
+                        <span> Nursery </span>
                     </a>
                     <div class="collapse" id="sidebarNursary">
                         <ul class="nav-second-level">
@@ -70,7 +70,7 @@
                                 <a href="{{ route('nursary.create') }}">Add New</a>
                             </li>
                             <li>
-                                <a href="{{ route('nursary.index') }}">Nursary</a>
+                                <a href="{{ route('nursary.index') }}">Nursery</a>
                             </li>
                         </ul>
                     </div>

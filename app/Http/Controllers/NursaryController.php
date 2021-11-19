@@ -11,6 +11,16 @@ use Yajra\DataTables\Facades\DataTables;
 class NursaryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,7 +64,11 @@ class NursaryController extends Controller
      */
     public function store(Request $request)
     {
-        nursary::create($request->all());
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+            'manager' => ['required', 'string'],
+        ]);
+        Nursary::create($request->all());
         return view('pages.nursary.index');
     }
 
@@ -89,6 +103,10 @@ class NursaryController extends Controller
      */
     public function update(Request $request, Nursary $nursary)
     {
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+            'manager' => ['required', 'string'],
+        ]);
         $nursary->update($request->all());
         return view('pages.nursary.index');
     }

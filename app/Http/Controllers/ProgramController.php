@@ -11,6 +11,16 @@ use Yajra\DataTables\Facades\DataTables;
 class ProgramController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -20,7 +30,7 @@ class ProgramController extends Controller
         if ($request->ajax()) {
             $model = Program::query();
             return DataTables::of($model)
-                ->addColumn('add', function($model) {
+                ->addColumn('add', function ($model) {
                     return view('layouts.partials._add', [
                         'route' => route('subprogram.index', $model->id)
                     ]);
@@ -58,6 +68,11 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+        ]);
+
         Program::create($request->all());
         return redirect()->route('program.index');
     }
@@ -96,6 +111,12 @@ class ProgramController extends Controller
     public function update(Request $request, $id)
     {
         $data = Program::findOrFail($id);
+
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+        ]);
+
         $data->update($request->all());
         return redirect()->route('program.index');
     }

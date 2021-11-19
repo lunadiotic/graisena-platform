@@ -25,19 +25,26 @@
                         <h4 class="header-title  d-flex justify-content-between">
                             <span>Form</span>
                             <span>
-                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary"
+                                    style="margin-top: -6px;">Back</a>
                             </span>
                         </h4>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="nursary" class="form-label">Nama Nursary</label>
-                                    <select id="nursary" name="nursary_id" class="form-control">
+                                    <select id="nursary" name="nursary_id"
+                                        class="form-control @error('nursary_id') is-invalid @enderror">
                                         <option selected>Choose...</option>
                                         @foreach ($data as $item)
                                         <option value="{{ $item->id }}">{{$item->title}}</option>
                                         @endforeach
                                     </select>
+                                    @error('nursary_id')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -45,13 +52,27 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Judul Program</label>
-                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}">
+                                    <input type="text" id="title"
+                                        class="form-control @error('title') is-invalid @enderror" name="title"
+                                        value="{{ old('title') }}">
+                                    @error('title')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Lokasi</label>
-                                    <input type="text" id="location" class="form-control" name="location" value="{{ old('location') }}">
+                                    <input type="text" id="location"
+                                        class="form-control @error('location') is-invalid @enderror" name="location"
+                                        value="{{ old('location') }}">
+                                    @error('location')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -61,13 +82,27 @@
 
                                 <div class="mb-3">
                                     <label for="longitude" class="form-label">Longitude</label>
-                                    <input type="text" id="longitude" class="form-control" name="longitude" value="{{ old('longitude') }}">
+                                    <input type="text" id="longitude"
+                                        class="form-control @error('longitude') is-invalid @enderror" name="longitude"
+                                        value="{{ old('longitude') }}">
+                                    @error('longitude')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="latitude" class="form-label">Latitude</label>
-                                    <input type="text" id="latitude" class="form-control" name="latitude" value="{{ old('latitude') }}">
+                                    <input type="text" id="latitude"
+                                        class="form-control @error('latitude') is-invalid @enderror" name="latitude"
+                                        value="{{ old('latitude') }}">
+                                    @error('latitude')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                         </div>
