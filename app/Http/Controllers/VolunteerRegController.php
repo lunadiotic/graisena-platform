@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Province;
 use App\Volunteer;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class VolunteerRegController extends Controller
      */
     public function index()
     {
-        return view('pages.volunteer.index');
+        $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('pages.regvolunteer.index')->with([
+            'provinces' => $provinces
+        ]);
     }
 
     /**

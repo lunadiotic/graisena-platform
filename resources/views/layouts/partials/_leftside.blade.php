@@ -43,6 +43,23 @@
                 </li>
 
                 <li>
+                    <a href="#sidebarVolunteer" data-bs-toggle="collapse">
+                        <i data-feather="file-text"></i>
+                        <span> Volunteer </span>
+                    </a>
+                    <div class="collapse" id="sidebarVolunteer">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('volunteer.create') }}">Add New</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('volunteer.index') }}">Volunteer</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="#sidebarNursary" data-bs-toggle="collapse">
                         <i data-feather="shield"></i>
                         <span> Nursary </span>

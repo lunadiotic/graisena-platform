@@ -1,169 +1,102 @@
-@extends('auth.app')
+@extends('layouts.app')
+
+@push('styles')
+<link href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css') }}" rel="stylesheet"
+    type="text/css" />
+@endpush
 
 @section('content')
-<div class="account-pages mt-5 mb-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-6">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+<!-- Start Content-->
+<div class="container-fluid">
 
-                <div class="card bg-pattern">
-
-                    <div class="card-body p-4">
-
-                        <div class="text-center w-75 m-auto">
-                            <p class="text-muted mb-4 mt-3">Selamat Datang di Pendaftaran Relawan Graisena.</p>
-                        </div>
-
-                        <form method="POST" action="{{ route('reg.volunteer') }}">
-                            @csrf
-
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nama</label>
-                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                @error('name')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="gender" class="form-label">Jenis Kelamin</label>
-                                <select name="gender" id="gender" class="form-control  @error('gender') is-invalid @enderror">
-                                    <option value="m" {{ old('gender') == 'm' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="f" {{ old('gender') == 'm' ? 'selected' : '' }}>Perempuan</option>
-                                </select>
-                                @error('gender')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="date_of_birth" class="form-label">Tanggal Lahir</label>
-                                <input class="form-control @error('date_of_birth') is-invalid @enderror" type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
-                                @error('date_of_birth')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="status_of_marital" class="form-label">Status Perkawinan</label>
-                                <select name="status_of_marital" id="status_of_marital" class="form-control  @error('status_of_marital') is-invalid @enderror">
-                                    <option value="s" {{ old('status_of_marital') == 's' ? 'selected' : '' }}>Lajang</option>
-                                    <option value="m" {{ old('status_of_marital') == 'm' ? 'selected' : '' }}>Menikah</option>
-                                    <option value="d" {{ old('status_of_marital') == 'd' ? 'selected' : '' }}>Cerai</option>
-                                    <option value="w" {{ old('status_of_marital') == 'w' ? 'selected' : '' }}>Cerai Mati</option>
-                                </select>
-                                @error('status_of_marital')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="status_of_job" class="form-label">Status Perkawinan</label>
-                                <select name="status_of_job" id="status_of_job" class="form-control  @error('status_of_job') is-invalid @enderror">
-                                    <option value="s" {{ old('status_of_job') == 's' ? 'selected' : '' }}>Pelajar</option>
-                                    <option value="w" {{ old('status_of_job') == 'w' ? 'selected' : '' }}>Bekerja</option>
-                                    <option value="n" {{ old('status_of_job') == 'n' ? 'selected' : '' }}>Tidak Bekerja</option>
-                                </select>
-                                @error('status_of_job')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Alamat</label>
-                                <textarea name="address" id="address" cols="30" rows="10" class="form-control @error('address') is-invalid @enderror" required>{{ old('address') }}</textarea>
-                                @error('address')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">No. WhatsApp/HP</label>
-                                <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
-                                @error('phone')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="emailaddress" class="form-label">Email address</label>
-                                <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" id="email" value="{{ old('email') }}" autocomplete="email">
-                                @error('email')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="media_social" class="form-label">Nama Pengguna Media Sosial (Facebook/Instagram/TikTok)</label>
-                                <input type="text" name="media_social" id="media_social" class="form-control @error('media_social') is-invalid @enderror" value="{{ old('media_social') }}">
-                                @error('media_social')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="affiliate" class="form-label">Afiliasi</label>
-                                <input type="text" name="affiliate" id="affiliate" class="form-control @error('affiliate') is-invalid @enderror" value="{{ old('affiliate') }}">
-                                @error('affiliate')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="skill" class="form-label">Bidang Kemampuan (Pisahkan Dengan Tanda [,] Koma Jika Lebih Dari Satu)</label>
-                                <input type="text" name="skill" id="skill" class="form-control @error('skill') is-invalid @enderror" value="{{ old('skill') }}">
-                                @error('skill')
-                                    <span class="text-danger" role="alert">
-                                        <small><strong>{{ $message }}</strong></small>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="text-center d-grid">
-                                <button class="btn btn-primary" type="submit"> Daftar </button>
-                            </div>
-
-                        </form>
-                    </div> <!-- end card-body -->
-                </div>
-                <!-- end card -->
-
-                <div class="row mt-3">
-                    <div class="col-12 text-center">
-                    </div> <!-- end col -->
-                </div>
-                <!-- end row -->
-
-            </div> <!-- end col -->
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Volunteer</h4>
+            </div>
         </div>
-        <!-- end row -->
     </div>
-    <!-- end container -->
-</div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title d-flex justify-content-between">
+                        <span>Basic Data Table</span>
+                        <span>
+                            <a href="{{ route('volunteer.create') }}" class="btn btn-sm btn-primary"
+                                style="margin-top: -6px;">Create</a>
+                        </span>
+                    </h4>
+                    <table id="datatable" class="table dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Gender</th>
+                                <th>Kota</th>
+                                <th>Afiliasi</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+    <!-- end row-->
+
+</div> <!-- container -->
 @endsection
 
+@push('scripts')
+<!-- third party js -->
+<script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-select/js/dataTables.select.min.js') }}"></script>
+<!-- third party js ends -->
+
+<!-- Datatables init -->
+<script>
+    $(document).ready(function() {
+        var table = $('#datatable').DataTable({
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('volunteer.index') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data : function(data) {
+                    if (data.gender == 'm') {
+                        return 'Laki-laki'
+                    } else {
+                        return 'Perempuan'
+                    }
+                }, name: 'gender'},
+                {data: 'regency.name', name: 'regency.name'},
+                {data: 'affiliate', name: 'affiliate'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+        });
+    });
+</script>
+@endpush
