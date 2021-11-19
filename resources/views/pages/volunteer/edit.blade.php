@@ -219,7 +219,7 @@
                                         Jika Lebih Dari Satu)</label>
                                     <input type="text" name="skill" id="skill"
                                         class="form-control @error('skill') is-invalid @enderror"
-                                        value="{{ old('skill', $data->affiliate) }}">
+                                        value="{{ old('skill', $data->skill) }}">
                                     @error('skill')
                                     <span class="text-danger" role="alert">
                                         <small><strong>{{ $message }}</strong></small>

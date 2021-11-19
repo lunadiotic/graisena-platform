@@ -23,6 +23,11 @@
                         <h6 class="text-overflow m-0">Welcome !</h6>
                     </div>
 
+                    <a href="{{ route('profile.index') }}" class="dropdown-item notify-item">
+                        <i class="fe-user"></i>
+                        <span>My Account</span>
+                    </a>
+
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->

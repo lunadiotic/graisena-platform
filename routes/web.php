@@ -47,5 +47,9 @@ Route::get('/distribution/{distribution_seed}/distribution/seed/edit/', 'Distrib
 Route::patch('/distribution/{distribution_seed}/distribution/seed/update/', 'DistributionSeedController@update')->name('distribution.seed.update');
 Route::delete('/distribution/{distribution_seed}/distribution/seed/destroy/', 'DistributionSeedController@destroy')->name('distribution.seed.destroy');
 
+// Profile
+Route::get('/profile', 'ProfileController@index')->name('profile.index');
+Route::post('/profile', 'ProfileController@store')->name('profile.store');
+
 // Download Attach File
 Route::get('/download/{file}/program', 'DownloadController@program')->name('download.program');
