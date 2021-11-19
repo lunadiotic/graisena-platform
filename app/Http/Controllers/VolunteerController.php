@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Province;
 use App\Volunteer;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -40,7 +41,10 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        //
+        $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('pages.volunteer.create')->with([
+            'provinces' => $provinces
+        ]);
     }
 
     /**
@@ -51,7 +55,8 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Volunteer::create($request->all());
+        return redirect()->route('volunteer.index');
     }
 
     /**
@@ -73,7 +78,12 @@ class VolunteerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Volunteer::findOrFail($id);
+        $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('pages.volunteer.edit')->with([
+            'data' => $data,
+            'provinces' => $provinces
+        ]);
     }
 
     /**
@@ -85,7 +95,9 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Volunteer::findOrFail($id);
+        $data->update($request->all());
+        return redirect()->route('volunteer.index');
     }
 
     /**
@@ -96,6 +108,8 @@ class VolunteerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Volunteer::findOrFail($id);
+        $data->delete();
+        return redirect()->route('volunteer.index');
     }
 }

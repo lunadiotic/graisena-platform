@@ -38,7 +38,7 @@
                                 <select name="gender" id="gender"
                                     class="form-control  @error('gender') is-invalid @enderror">
                                     <option value="m" {{ old('gender')=='m' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="f" {{ old('gender')=='m' ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="f" {{ old('gender')=='f' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                                 @error('gender')
                                 <span class="text-danger" role="alert">
