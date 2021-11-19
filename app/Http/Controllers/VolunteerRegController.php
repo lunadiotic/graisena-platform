@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class VolunteerRegController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,6 +39,23 @@ class VolunteerRegController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required'],
+            'gender' => ['required'],
+            'date_of_birth' => ['required'],
+            'status_of_marital' => ['required'],
+            'status_of_job' => ['required'],
+            'province_id' => ['required'],
+            'regency_id' => ['required'],
+            'address' => ['required'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'numeric'],
+            'media_social' => ['nullable'],
+            'affiliate' => ['nullable'],
+            'skill' => ['nullable'],
+            'active' => ['required'],
+        ]);
+
         Volunteer::create($request->all());
 
         return redirect()->back()->withStatus(

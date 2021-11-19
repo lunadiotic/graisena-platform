@@ -216,8 +216,8 @@
                                     <label for="active" class="form-label">Status</label>
                                     <select name="active" id="active"
                                         class="form-control  @error('active') is-invalid @enderror">
-                                        <option value="m" {{ old('active')=='1' ? 'selected' : '' }}>Aktif</option>
-                                        <option value="f" {{ old('active')=='0' ? 'selected' : '' }}>Non-Aktif</option>
+                                        <option value="1" {{ old('active')=='1' ? 'selected' : '' }}>Aktif</option>
+                                        <option value="0" {{ old('active')=='0' ? 'selected' : '' }}>Non-Aktif</option>
                                     </select>
                                     @error('active')
                                     <span class="text-danger" role="alert">

@@ -12,6 +12,16 @@ use Yajra\DataTables\Facades\DataTables;
 class SubprogramController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -22,7 +32,7 @@ class SubprogramController extends Controller
             $model = Subprogram::where('program_id', $id)
                 ->orderBy('date_start', 'DESC')->with(['program']);
             return DataTables::of($model)
-                ->addColumn('action', function ($model){
+                ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
                         'url_show' => route('subprogram.show', [$model->program->id, $model->id]),
@@ -61,6 +71,25 @@ class SubprogramController extends Controller
     public function store($id, Request $request)
     {
         $program = Program::findOrFail($id);
+        $this->validate($request, [
+            'date_start' => ['required'],
+            'date_end' => ['required'],
+            'location' => ['required'],
+            'partner' => ['nullable', 'string'],
+            'notes' => ['nullable', 'string'],
+            'budget' => ['nullable', 'numeric'],
+            'used' => ['nullable', 'numeric'],
+            'balance' => ['nullable', 'numeric'],
+            'total_male' => ['required', 'numeric'],
+            'total_female' => ['required', 'numeric'],
+            'range_age_1' => ['nullable', 'numeric'],
+            'range_age_2' => ['nullable', 'numeric'],
+            'range_age_3' => ['nullable', 'numeric'],
+            'range_age_4' => ['nullable', 'numeric'],
+            'range_age_5' => ['nullable', 'numeric'],
+            'range_age_6' => ['nullable', 'numeric'],
+            'attachment' => ['nullable', 'string'],
+        ]);
         $program->subprogram()->create($request->all());
         return redirect()->route('subprogram.index', $program->id);
     }
@@ -104,6 +133,25 @@ class SubprogramController extends Controller
     public function update(Request $request, $id, $subprogram)
     {
         $program = Program::findOrFail($id);
+        $this->validate($request, [
+            'date_start' => ['required'],
+            'date_end' => ['required'],
+            'location' => ['required'],
+            'partner' => ['nullable', 'string'],
+            'notes' => ['nullable', 'string'],
+            'budget' => ['nullable', 'numeric'],
+            'used' => ['nullable', 'numeric'],
+            'balance' => ['nullable', 'numeric'],
+            'total_male' => ['required', 'numeric'],
+            'total_female' => ['required', 'numeric'],
+            'range_age_1' => ['nullable', 'numeric'],
+            'range_age_2' => ['nullable', 'numeric'],
+            'range_age_3' => ['nullable', 'numeric'],
+            'range_age_4' => ['nullable', 'numeric'],
+            'range_age_5' => ['nullable', 'numeric'],
+            'range_age_6' => ['nullable', 'numeric'],
+            'attachment' => ['nullable', 'string'],
+        ]);
         $program->subprogram()->update($request->except(['_method', '_token']));
         return redirect()->route('subprogram.index', $program->id);
     }
