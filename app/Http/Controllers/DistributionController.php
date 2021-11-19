@@ -10,6 +10,16 @@ use Yajra\DataTables\Facades\DataTables;
 class DistributionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,7 +29,7 @@ class DistributionController extends Controller
         if ($request->ajax()) {
             $model = Distribution::query();
             return DataTables::of($model)
-                ->addColumn('add', function($model) {
+                ->addColumn('add', function ($model) {
                     return view('layouts.partials._add', [
                         'route' => route('distribution.seed.index', $model->id)
                     ]);
@@ -58,6 +68,13 @@ class DistributionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nursary_id' => ['required', 'numeric'],
+            'title' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'longitude' => ['required', 'string'],
+            'latitude' => ['required', 'string'],
+        ]);
         Distribution::create($request->all());
         return view('pages.distribution.index');
     }
@@ -74,7 +91,6 @@ class DistributionController extends Controller
             'distribution' => $distribution,
             'seed' => $distribution->load('distribution_seeds')
         ];
-        // dd($data);
         return view('pages.distribution.show')->with($data);
     }
 
@@ -103,6 +119,13 @@ class DistributionController extends Controller
      */
     public function update(Request $request, Distribution $distribution)
     {
+        $this->validate($request, [
+            'nursary_id' => ['required', 'numeric'],
+            'title' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'longitude' => ['required', 'string'],
+            'latitude' => ['required', 'string'],
+        ]);
         $distribution->update($request->all());
         return view('pages.distribution.index');
     }

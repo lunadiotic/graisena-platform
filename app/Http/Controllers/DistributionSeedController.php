@@ -10,12 +10,22 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DistributionSeedController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, Distribution $distribution)
     {
         if ($request->ajax()) {
             $model = $distribution->distribution_seeds();
             return DataTables::of($model)
-                ->addColumn('seed', function($model){
+                ->addColumn('seed', function ($model) {
                     return $model->seed->title;
                 })
                 ->addColumn('action', function ($model) {
@@ -44,8 +54,12 @@ class DistributionSeedController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'seed_id' => ['required', 'numeric'],
+            'total' => ['required', 'numeric']
+        ]);
         DistributionSeed::create($request->all());
-        return redirect()->route('distribution.seed.index', ['distribution'=>$request->distribution_id]);
+        return redirect()->route('distribution.seed.index', ['distribution' => $request->distribution_id]);
     }
 
     public function show(Distribution $distribution)
@@ -55,7 +69,6 @@ class DistributionSeedController extends Controller
 
     public function edit(DistributionSeed $distribution_seed)
     {
-        // dd($distribution_seed);
         $data = [
             'distribution' => $distribution_seed,
             'seed' => Seed::all(),
@@ -65,13 +78,17 @@ class DistributionSeedController extends Controller
 
     public function update(DistributionSeed $distribution_seed, Request $request)
     {
+        $this->validate($request, [
+            'seed_id' => ['required', 'numeric'],
+            'total' => ['required', 'numeric']
+        ]);
         $distribution_seed->update($request->all());
-        return redirect()->route('distribution.seed.index', ['distribution'=>$request->distribution_id]);
+        return redirect()->route('distribution.seed.index', ['distribution' => $request->distribution_id]);
     }
 
     public function destroy(DistributionSeed $distribution_seed)
     {
         $distribution_seed->delete();
-        return redirect()->route('distribution.seed.index', ['distribution'=>$distribution_seed->distribution_id]);
+        return redirect()->route('distribution.seed.index', ['distribution' => $distribution_seed->distribution_id]);
     }
 }

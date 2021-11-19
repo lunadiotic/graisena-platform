@@ -25,19 +25,27 @@
                         <h4 class="header-title  d-flex justify-content-between">
                             <span>Form</span>
                             <span>
-                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary"
+                                    style="margin-top: -6px;">Back</a>
                             </span>
                         </h4>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="mb-3">
                                     <label for="nursary" class="form-label">Nama Nursary</label>
-                                    <select id="nursary" name="nursary_id" class="form-control">
+                                    <select id="nursary" name="nursary_id"
+                                        class="form-control @error('nursary_id') is-invalid @enderror">
                                         <option selected>Choose...</option>
                                         @foreach ($nursary as $item)
-                                        <option value="{{ $item->id }}" {{ $distribution->nursary_id == $item->id ? 'selected' : ''}}>{{$item->title}}</option>
+                                        <option value="{{ $item->id }}" {{ $distribution->nursary_id == $item->id ?
+                                            'selected' : ''}}>{{$item->title}}</option>
                                         @endforeach
                                     </select>
+                                    @error('nursary_id')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -45,14 +53,28 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Judul Program</label>
-                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $distribution->title) }}">
+                                    <input type="text" id="title"
+                                        class="form-control @error('title') is-invalid @enderror" name="title"
+                                        value="{{ old('title', $distribution->title) }}">
+                                    @error('title')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="location" class="form-label">Lokasi</label>
-                                    <input type="text" id="location" class="form-control" name="location" value="{{ old('location', $distribution->location) }}">
+                                    <input type="text" id="location"
+                                        class="form-control @error('location') is-invalid @enderror" name="location"
+                                        value="{{ old('location', $distribution->location) }}">
+                                    @error('location')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -61,14 +83,28 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="longitude" class="form-label">Longitude</label>
-                                    <input type="text" id="longitude" class="form-control" name="longitude" value="{{ old('longitude', $distribution->longitude) }}">
+                                    <input type="text" id="longitude"
+                                        class="form-control @error('longitude') is-invalid @enderror" name="longitude"
+                                        value="{{ old('longitude', $distribution->longitude) }}">
+                                    @error('longitude')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
 
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="latitude" class="form-label">Latitude</label>
-                                    <input type="text" id="latitude" class="form-control" name="latitude" value="{{ old('latitude', $distribution->latitude) }}">
+                                    <input type="text" id="latitude"
+                                        class="form-control @error('latitude') is-invalid @enderror" name="latitude"
+                                        value="{{ old('latitude', $distribution->latitude) }}">
+                                    @error('latitude')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -100,10 +136,4 @@
 @endsection
 
 @push('scripts')
-<script>
-    $('#used').change(function() {
-        let balance = $('#budget').val() - $('#used').val();
-        $('#balance').val(balance)
-    })
-</script>
 @endpush
