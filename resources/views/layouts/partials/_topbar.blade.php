@@ -26,8 +26,7 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="{{ route('logout') }}" class="dropdown-item notify-item"
-                        onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}" class="dropdown-item notify-item" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
@@ -52,21 +51,24 @@
         <div class="logo-box">
             <a href="index.html" class="logo logo-dark text-center">
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                    <h3>Graisena</h3>
+                    {{-- <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22"> --}}
                     <!-- <span class="logo-lg-text-light">UBold</span> -->
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20">
+                    <h3>Graisena</h3>
+                    {{-- <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20"> --}}
                     <!-- <span class="logo-lg-text-light">U</span> -->
                 </span>
             </a>
 
-            <a href="index.html" class="logo logo-light text-center">
+            <a href="{{ route('home') }}" class="logo logo-light text-center">
                 <span class="logo-sm">
                     <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="20">
+                    {{-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="20"> --}}
+                    <h2 class="text-white" style="margin-top: 17px;">Graisena</h2>
                 </span>
             </a>
         </div>

@@ -44,7 +44,7 @@
 
                 <li>
                     <a href="#sidebarVolunteer" data-bs-toggle="collapse">
-                        <i data-feather="file-text"></i>
+                        <i data-feather="users"></i>
                         <span> Volunteer </span>
                     </a>
                     <div class="collapse" id="sidebarVolunteer">
@@ -78,7 +78,7 @@
 
                 <li>
                     <a href="#sidebardistribution" data-bs-toggle="collapse">
-                        <i data-feather="shield"></i>
+                        <i data-feather="map"></i>
                         <span> Distribution </span>
                     </a>
                     <div class="collapse" id="sidebardistribution">
@@ -95,7 +95,7 @@
 
                 <li>
                     <a href="#sidebardatamaster" data-bs-toggle="collapse">
-                        <i data-feather="shield"></i>
+                        <i data-feather="box"></i>
                         <span> Data Master </span>
                     </a>
                     <div class="collapse" id="sidebardatamaster">
