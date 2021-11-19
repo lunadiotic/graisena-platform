@@ -33,7 +33,7 @@ class SeedController extends Controller
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
-                        'url_show' => ('#'),
+                        'url_show' => route('seed.show', $model->id),
                         'url_edit' => route('seed.edit', $model->id),
                         'url_destroy' => route('seed.destroy', $model->id)
                     ]);
