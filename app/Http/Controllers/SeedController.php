@@ -11,6 +11,16 @@ use Yajra\DataTables\Facades\DataTables;
 class SeedController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -53,6 +63,9 @@ class SeedController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+        ]);
         Seed::create($request->all());
         return view('pages.seed.index');
     }
@@ -88,6 +101,9 @@ class SeedController extends Controller
      */
     public function update(Request $request, Seed $seed)
     {
+        $this->validate($request, [
+            'title' => ['required', 'string'],
+        ]);
         $seed->update($request->all());
         return view('pages.seed.index');
     }
