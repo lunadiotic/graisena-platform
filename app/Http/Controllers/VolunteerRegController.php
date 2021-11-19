@@ -52,8 +52,7 @@ class VolunteerRegController extends Controller
             'phone' => ['nullable', 'numeric'],
             'media_social' => ['nullable'],
             'affiliate' => ['nullable'],
-            'skill' => ['nullable'],
-            'active' => ['required'],
+            'skill' => ['nullable']
         ]);
 
         Volunteer::create($request->all());
