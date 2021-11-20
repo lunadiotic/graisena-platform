@@ -47,9 +47,9 @@
                                     <label for="gender" class="form-label">Jenis Kelamin</label>
                                     <select name="gender" id="gender"
                                         class="form-control  @error('gender') is-invalid @enderror">
-                                        <option value="m" {{ old('gender', $data->gender)=='m' ? 'selected' : ''
+                                        <option value="m" {{ old('gender', $data->gender) =='m' ? 'selected' : ''
                                             }}>Laki-laki</option>
-                                        <option value="f" {{ old('gender', $data->gender)=='f' ? 'selected' : ''
+                                        <option value="f" {{ old('gender', $data->gender) =='f' ? 'selected' : ''
                                             }}>Perempuan</option>
                                     </select>
                                     @error('gender')
@@ -63,7 +63,7 @@
                                     <label for="date_of_birth" class="form-label">Tanggal Lahir</label>
                                     <input class="form-control @error('date_of_birth') is-invalid @enderror" type="date"
                                         name="date_of_birth" id="date_of_birth"
-                                        value="{{ old('date_of_birth', $data->date_of_birth) }}" required
+                                        value="{{ old('date_of_birth', $data->date_of_birth->toDateString()) }}" required
                                         autocomplete="date_of_birth">
                                     @error('date_of_birth')
                                     <span class="text-danger" role="alert">
@@ -275,7 +275,7 @@
 <script>
     $(function () {
         $('#province_id').on('change', function () {
-            $.post("/api/location/regencies",
+            $.post("{{ route('api.location.regencies') }}",
                 {
                     id: $(this).val()
                 },

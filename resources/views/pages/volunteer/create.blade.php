@@ -258,7 +258,7 @@
 <script>
     $(function () {
         $('#province_id').on('change', function () {
-            $.post("/api/location/regencies",
+            $.post("{{ route('api.location.regencies') }}",
                 {
                     id: $(this).val()
                 },
