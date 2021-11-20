@@ -13,13 +13,13 @@
                             <div class="auth-logo">
                                 <a href="index.html" class="logo logo-dark text-center">
                                     <span class="logo-lg">
-                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                        <img src="{{ asset('/assets/images/logo-light.png') }}" alt="" height="50">
                                     </span>
                                 </a>
 
                                 <a href="index.html" class="logo logo-light text-center">
                                     <span class="logo-lg">
-                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                        <img src="{{ asset('/assets/images/logo-light.png') }}" alt="" height="50">
                                     </span>
                                 </a>
                             </div>
