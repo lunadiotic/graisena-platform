@@ -56,24 +56,21 @@
         <div class="logo-box">
             <a href="index.html" class="logo logo-dark text-center">
                 <span class="logo-sm">
-                    <h3>Graisena</h3>
-                    {{-- <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22"> --}}
+                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="40">
                     <!-- <span class="logo-lg-text-light">UBold</span> -->
                 </span>
                 <span class="logo-lg">
-                    <h3>Graisena</h3>
-                    {{-- <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20"> --}}
+                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="40">
                     <!-- <span class="logo-lg-text-light">U</span> -->
                 </span>
             </a>
 
             <a href="{{ route('home') }}" class="logo logo-light text-center">
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="40">
                 </span>
                 <span class="logo-lg">
-                    {{-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="20"> --}}
-                    <h2 class="text-white" style="margin-top: 17px;">Graisena</h2>
+                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="40">
                 </span>
             </a>
         </div>

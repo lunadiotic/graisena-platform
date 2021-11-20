@@ -44,7 +44,7 @@
     <footer class="footer footer-alt">
         2020 - <script>
             document.write(new Date().getFullYear())
-        </script> &copy; Graisana Platform by <a href="idstack.net" class="text-white-50">IDStack</a>
+        </script> &copy; Graisana Platform by <a href="https://idstack.net" class="text-white-50">IDStack</a>
     </footer>
 
     <!-- Vendor js -->
