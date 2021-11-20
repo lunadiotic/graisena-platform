@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Detail: {{ $data->title }}</h4>
+                <h4 class="page-title">Data Relawan: {{ $volunteer->name }}</h4>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title d-flex justify-content-between">
-                        <span>Program</span>
+                        <span>Relawan</span>
                         <span>
                             <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
                         </span>
@@ -30,14 +30,80 @@
                         <table class="table table-borderless mb-0">
                             <tbody>
                                 <tr>
-                                    <th scope="row">Judul</th>
+                                    <th scope="row">Nama</th>
                                     <td>:</td>
-                                    <td>{{ $data->title }}</td>
+                                    <td>{{ $volunteer->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Deskripsi</th>
+                                    <th scope="row">Tanggal Lahir</th>
                                     <td>:</td>
-                                    <td>{{ $data->description }}</td>
+                                    <td>{{ $volunteer->date_of_birth->format('d-m-Y') }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Jenis Kelamin</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->getGender() }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Provinsi</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->province->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kota/Kab</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->regency->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Alamat</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->address }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Status Perkawinan</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->getMarital() }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Status Pekerjaan</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->getJob() }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Telepon</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Media Sosial</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->media_social }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Afiliasi</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->affiliate }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Status Keaktifan</th>
+                                    <td>:</td>
+                                    <td>{{ $volunteer->getStatus() }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Keahlian</th>
+                                    <td>:</td>
+                                    <td>
+                                        <ul>
+                                            @foreach (explode(',', $volunteer->skill) as $skill)
+                                                <li>{{ $skill }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

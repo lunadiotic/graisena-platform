@@ -94,7 +94,10 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+        return view('pages.volunteer.show')->with([
+            'volunteer' => $volunteer
+        ]);
     }
 
     /**
