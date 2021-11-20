@@ -10,6 +10,19 @@
                     <div class="card-body p-4">
 
                         <div class="text-center w-75 m-auto">
+                            <div class="auth-logo">
+                                <a href="index.html" class="logo logo-dark text-center">
+                                    <span class="logo-lg">
+                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                    </span>
+                                </a>
+
+                                <a href="index.html" class="logo logo-light text-center">
+                                    <span class="logo-lg">
+                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                    </span>
+                                </a>
+                            </div>
                             <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                         </div>
 
