@@ -67,10 +67,10 @@
                     <div class="collapse" id="sidebarNursary">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('nursary.create') }}">Add New</a>
+                                <a href="{{ route('nursery.create') }}">Add New</a>
                             </li>
                             <li>
-                                <a href="{{ route('nursary.index') }}">Nursery</a>
+                                <a href="{{ route('nursery.index') }}">Nursery</a>
                             </li>
                         </ul>
                     </div>

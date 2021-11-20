@@ -30,9 +30,9 @@
                         <table class="table table-borderless mb-0">
                             <tbody>
                                 <tr>
-                                    <th scope="row">Nursary</th>
+                                    <th scope="row">Nursery</th>
                                     <td>:</td>
-                                    <td>{{ $distribution->nursary->title }}</td>
+                                    <td>{{ $distribution->nursery->title }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Judul</th>

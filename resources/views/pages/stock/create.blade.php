@@ -6,9 +6,8 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('stock.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('stock.store', $nursery->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="nursary_id" value="{{ $nursary->id }}">
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -90,6 +89,8 @@
                                     </span>
                                     @enderror
                                 </div>
+                            </div> <!-- end col -->
+                            <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="seed_broken" class="form-label">Bibit Rusak</label>
                                     <input type="number" id="seed_broken"
@@ -115,6 +116,8 @@
                                     </span>
                                     @enderror
                                 </div>
+                            </div> <!-- end col -->
+                            <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="total_seed" class="form-label">Total Bibit</label>
                                     <input type="number" id="total_seed"

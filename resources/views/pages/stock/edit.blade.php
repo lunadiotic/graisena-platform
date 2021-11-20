@@ -6,7 +6,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-<form action="{{ route('stock.update', $stock->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('stock.update', [$nursery->id, $stock->id]) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH') @csrf
         <!-- start page title -->
         <div class="row">
@@ -33,7 +33,6 @@
                                 <div class="mb-3">
                                     <label for="date" class="form-label">Tanggal</label>
                                     <input class="form-control" id="date" type="date" name="date_check" value="{{ old('date', $stock->date_check->toDateString()) }}">
-                                    <input type="hidden" name="nursary_id" value="{{ $stock->nursary_id }}">
                                 </div>
                             </div> <!-- end col -->
                         </div>

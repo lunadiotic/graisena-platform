@@ -32,15 +32,15 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="mb-3">
-                                    <label for="nursary" class="form-label">Nama Nursary</label>
-                                    <select id="nursary" name="nursary_id"
-                                        class="form-control @error('nursary_id') is-invalid @enderror">
+                                    <label for="nursery_id" class="form-label">Nama Nursery</label>
+                                    <select id="nursery_id" name="nursery_id"
+                                        class="form-control @error('nursery_id') is-invalid @enderror">
                                         <option selected>Choose...</option>
                                         @foreach ($data as $item)
                                         <option value="{{ $item->id }}">{{$item->title}}</option>
                                         @endforeach
                                     </select>
-                                    @error('nursary_id')
+                                    @error('nursery_id')
                                     <span class="text-danger" role="alert">
                                         <small><strong>{{ $message }}</strong></small>
                                     </span>

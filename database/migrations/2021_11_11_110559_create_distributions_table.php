@@ -15,8 +15,8 @@ class CreateDistributionsTable extends Migration
     {
         Schema::create('distributions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('nursary_id');
-            $table->foreign('nursary_id')->references('id')->on('nursaries')->onDelete('cascade');
+            $table->unsignedBigInteger('nursery_id');
+            $table->foreign('nursery_id')->references('id')->on('nurseries')->onDelete('cascade');
             $table->string('title');
             $table->string('location');
             $table->string('longitude');

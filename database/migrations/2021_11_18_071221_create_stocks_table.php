@@ -15,8 +15,8 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('nursary_id');
-            $table->foreign('nursary_id')->references('id')->on('nursaries')->onDelete('cascade');
+            $table->unsignedBigInteger('nursery_id');
+            $table->foreign('nursery_id')->references('id')->on('nurseries')->onDelete('cascade');
             $table->unsignedBigInteger('seed_id');
             $table->foreign('seed_id')->references('id')->on('seeds')->onDelete('cascade');
             $table->date('date_check');

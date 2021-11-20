@@ -6,7 +6,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('nursary.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('nursery.update', $data->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT') @csrf
         <!-- start page title -->
         <div class="row">
