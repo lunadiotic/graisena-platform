@@ -29,7 +29,13 @@
 
 </head>
 
-<body class="loading authentication-bg authentication-bg-pattern">
+<body class="loading"
+    style="background-image: url('{{ asset('/assets/images/bg-light.png') }}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: 50%;"
+>
 
     @yield('content')
     <!-- end page -->

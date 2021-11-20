@@ -16,6 +16,19 @@
                     <div class="card-body p-4">
 
                         <div class="text-center w-75 m-auto">
+                            <div class="auth-logo">
+                                <a href="index.html" class="logo logo-dark text-center">
+                                    <span class="logo-lg">
+                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                    </span>
+                                </a>
+
+                                <a href="index.html" class="logo logo-light text-center">
+                                    <span class="logo-lg">
+                                        <img src="/assets/images/logo-light.png" alt="" height="50">
+                                    </span>
+                                </a>
+                            </div>
                             <p class="text-muted mb-4 mt-3">Selamat Datang di Pendaftaran Relawan Graisena.</p>
                         </div>
 
@@ -224,7 +237,7 @@
 <script>
     $(function () {
         $('#province_id').on('change', function () {
-            $.post("/api/location/regencies",
+            $.post("{{ route('api.location.regencies') }}",
                 {
                     id: $(this).val()
                 },
