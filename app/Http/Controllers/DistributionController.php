@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distribution;
-use App\Nursary;
+use App\Nursery;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -31,7 +31,7 @@ class DistributionController extends Controller
             return DataTables::of($model)
                 ->addColumn('add', function ($model) {
                     return view('layouts.partials._add', [
-                        'route' => route('distribution.seed.index', $model->id)
+                        'route' => route('dist.seed.index', $model->id)
                     ]);
                 })
                 ->addColumn('action', function ($model) {
@@ -56,8 +56,8 @@ class DistributionController extends Controller
      */
     public function create()
     {
-        $nursary = Nursary::all();
-        return view('pages.distribution.create')->withData($nursary);
+        $nursery = Nursery::all();
+        return view('pages.distribution.create')->withData($nursery);
     }
 
     /**
@@ -69,14 +69,14 @@ class DistributionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nursary_id' => ['required', 'numeric'],
+            'nursery_id' => ['required', 'numeric'],
             'title' => ['required', 'string'],
             'location' => ['required', 'string'],
             'longitude' => ['required', 'string'],
             'latitude' => ['required', 'string'],
         ]);
         Distribution::create($request->all());
-        return view('pages.distribution.index');
+        return redirect()->route('distribution.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class DistributionController extends Controller
     public function edit(Distribution $distribution)
     {
         $data = [
-            'nursary' => Nursary::all(),
+            'nursary' => Nursery::all(),
             'distribution' => $distribution
 
         ];
@@ -120,7 +120,7 @@ class DistributionController extends Controller
     public function update(Request $request, Distribution $distribution)
     {
         $this->validate($request, [
-            'nursary_id' => ['required', 'numeric'],
+            'nursery_id' => ['required', 'numeric'],
             'title' => ['required', 'string'],
             'location' => ['required', 'string'],
             'longitude' => ['required', 'string'],

@@ -6,11 +6,9 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('distribution.seed.update', ['distribution_seed'=>$distribution->id]) }}" method="POST"
+    <form action="{{ route('dist.seed.update', [$distribution->id, $distribution_seed->id]) }}" method="POST"
         enctype="multipart/form-data">
         @method('PATCH') @csrf
-        <input type="hidden" name="distribution_id" value="{{ $distribution->distribution_id }}">
-        <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
@@ -39,7 +37,7 @@
                                         class="form-control @error('seed_id') is-invalid @enderror">
                                         <option selected>Choose...</option>
                                         @foreach ($seed as $item)
-                                        <option value="{{ $item->id }}" {{ $distribution->seed_id == $item->id ?
+                                        <option value="{{ $item->id }}" {{ $distribution_seed->seed_id == $item->id ?
                                             'selected' : ''}}>{{$item->title}}</option>
                                         @endforeach
                                     </select>
@@ -55,7 +53,7 @@
                                     <label for="total" class="form-label">Total</label>
                                     <input type="number" id="total"
                                         class="form-control @error('total') is-invalid @enderror" name="total"
-                                        value="{{ old('total', $distribution->total) }}">
+                                        value="{{ old('total', $distribution_seed->total) }}">
                                     @error('total')
                                     <span class="text-danger" role="alert">
                                         <small><strong>{{ $message }}</strong></small>
@@ -90,12 +88,3 @@
     </form>
 </div> <!-- container -->
 @endsection
-
-{{-- @push('scripts')
-<script>
-    $('#used').change(function() {
-        let balance = $('#budget').val() - $('#used').val();
-        $('#balance').val(balance)
-    })
-</script>
-@endpush --}}

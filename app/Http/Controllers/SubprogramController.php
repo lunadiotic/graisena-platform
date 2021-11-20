@@ -152,7 +152,7 @@ class SubprogramController extends Controller
             'range_age_6' => ['nullable', 'numeric'],
             'attachment' => ['nullable', 'string'],
         ]);
-        $program->subprogram()->update($request->except(['_method', '_token']));
+        $program->subprogram()->find($subprogram)->update($request->except(['_method', '_token']));
         return redirect()->route('subprogram.index', $program->id);
     }
 
@@ -162,10 +162,10 @@ class SubprogramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $subprogram)
     {
         $program = Program::findOrFail($id);
-        $program->subprogram()->delete();
+        $program->subprogram()->find($subprogram)->delete();
         return redirect()->route('subprogram.index', $program->id);
     }
 }

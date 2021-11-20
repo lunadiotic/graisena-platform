@@ -67,7 +67,7 @@ class SeedController extends Controller
             'title' => ['required', 'string'],
         ]);
         Seed::create($request->all());
-        return view('pages.seed.index');
+        return redirect()->route('seed.index');
     }
 
     /**
@@ -105,7 +105,7 @@ class SeedController extends Controller
             'title' => ['required', 'string'],
         ]);
         $seed->update($request->all());
-        return view('pages.seed.index');
+        return redirect()->route('seed.index');
     }
 
     /**
@@ -117,6 +117,6 @@ class SeedController extends Controller
     public function destroy(Seed $seed)
     {
         $seed->delete();
-        return view('pages.seed.index');
+        return redirect()->route('seed.index');
     }
 }

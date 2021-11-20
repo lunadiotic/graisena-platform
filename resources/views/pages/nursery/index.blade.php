@@ -34,15 +34,16 @@
                     <h4 class="header-title  d-flex justify-content-between">
                         <span>Basic Data Table</span>
                         <span>
-                            <a href="{{ route('nursary.create') }}" class="btn btn-sm btn-primary">Create</a>
+                            <a href="{{ route('nursery.create') }}" class="btn btn-sm btn-primary">Create</a>
                         </span>
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tite</th>
-                                <th>Manager</th>
+                                <th>Program</th>
+                                <th>Pengelola</th>
+                                <th>Stock</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -80,11 +81,12 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('nursary.index') }}",
+            ajax: "{{ route('nursery.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
                 {data: 'title', name: 'title'},
                 {data: 'manager', name: 'manager'},
+                {data: 'add', name: 'add'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

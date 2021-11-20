@@ -6,9 +6,8 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('distribution.seed.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dist.seed.store', $distribution->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="distribution_id" value="{{ $distribution->id }}">
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -88,15 +87,3 @@
     </form>
 </div> <!-- container -->
 @endsection
-
-{{-- @push('scripts')
-<script>
-    $('#total_dead_seeds').change(function() {
-        let broken = $('#total_broken_seeds').val();
-        let health = $('#total_healthly_seeds').val();
-        let dead = $('#total_dead_seeds').val();
-        let total = broken + health + dead;
-        $('#total_seeds').val(total)
-    })
-</script>
-@endpush --}}

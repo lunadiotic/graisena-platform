@@ -6,7 +6,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-    <form action="{{ route('nursary.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('nursery.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- start page title -->
         <div class="row">
@@ -86,12 +86,3 @@
     </form>
 </div> <!-- container -->
 @endsection
-
-@push('scripts')
-<script>
-    $('#used').change(function() {
-        let balance = $('#budget').val() - $('#used').val();
-        $('#balance').val(balance)
-    })
-</script>
-@endpush

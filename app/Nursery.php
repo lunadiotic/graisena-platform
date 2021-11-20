@@ -7,7 +7,7 @@ use App\Stock;
 use App\Distribution;
 use App\DistributionSeed;
 
-class Nursary extends Model
+class Nursery extends Model
 {
     protected $guarded = [];
     protected $dates = [

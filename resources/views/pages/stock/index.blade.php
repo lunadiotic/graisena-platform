@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Program: {{ $data->title }}</h4>
+                <h4 class="page-title">Program: {{ $nursery->title }}</h4>
             </div>
         </div>
     </div>
@@ -28,14 +28,15 @@
                     <h4 class="header-title  d-flex justify-content-between">
                         <span>Basic Data Table</span>
                         <span>
-                            <a href="{{ route('nursary.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
-                            <a href="{{ route('stock.create', ['nursary'=>$data->id]) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
+                            <a href="{{ route('nursery.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            <a href="{{ route('stock.create', $nursery->id) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
                         </span>
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tanggal</th>
                                 <th>Bibit</th>
                                 <th>Total</th>
                                 <th>Action</th>
@@ -75,9 +76,10 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('stock.index', $data->id) }}",
+            ajax: "{{ route('stock.index', $nursery->id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
+                {data: 'date_check', name: 'date_check'},
                 {data: 'seed', name: 'seed'},
                 {data: 'total_seed', name: 'total_seed'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Nursary;
+use App\Nursery;
 use App\Seed;
 use App\Stock;
 use Yajra\DataTables\Facades\DataTables;
@@ -20,10 +20,11 @@ class StockController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request, Nursary $nursary)
+    public function index(Request $request, $id)
     {
         if ($request->ajax()) {
-            $model = $nursary->stocks();
+            $model = Stock::where('nursery_id', $id)
+                ->orderBy('date_check', 'DESC')->with(['nursery']);
             return DataTables::of($model)
                 ->addColumn('seed', function ($model) {
                     return $model->seed->title;
@@ -31,31 +32,33 @@ class StockController extends Controller
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
-                        'url_show' => route('stock.show', $model->id),
-                        'url_edit' => route('stock.edit', $model->id),
-                        'url_destroy' => route('stock.destroy', $model->id)
+                        'url_show' => route('stock.show', [$model->nursery->id, $model->id]),
+                        'url_edit' => route('stock.edit', [$model->nursery->id, $model->id]),
+                        'url_destroy' => route('stock.destroy', [$model->nursery->id, $model->id])
                     ]);
                 })
                 ->addIndexColumn()
                 ->rawColumns(['action'])->make(true);
         }
-
-        return view('pages.stock.index')->withData($nursary);
+        $nursery = Nursery::findOrFail($id);
+        return view('pages.stock.index')->with([
+            'nursery' => $nursery
+        ]);
     }
 
-    public function create(Nursary $nursary)
+    public function create($id)
     {
         $data = [
-            'nursary' => $nursary,
+            'nursery' => Nursery::findOrFail($id),
             'seed' => Seed::all(),
         ];
         return view('pages.stock.create')->with($data);
     }
 
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
+        $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
-            'nursary_id' => ['required', 'numeric'],
             'seed_id' => ['required', 'numeric'],
             'date_check' => ['required', 'date'],
             'seed_good' => ['required', 'numeric'],
@@ -64,28 +67,34 @@ class StockController extends Controller
             'seed_out' => ['required', 'numeric'],
             'total_seed' => ['required', 'numeric'],
         ]);
-        Stock::create($request->all());
-        return redirect()->route('stock.index', ['nursary' => $request->nursary_id]);
+        $nursery->stocks()->create($request->all());
+        return redirect()->route('stock.index', $nursery->id);
     }
 
-    public function show(Stock $stock)
+    public function show($id, $stock)
     {
-        return view('pages.stock.show')->withData($stock);
+        $nursery = Nursery::findOrFail($id);
+        $data = $nursery->stocks()->where('id', $stock)->first();
+        return view('pages.stock.show')->withData($data);
     }
 
-    public function edit(Stock $stock)
+    public function edit($id, $stock)
     {
+        $nursery = Nursery::findOrFail($id);
         $data = [
-            'stock' => $stock,
+            'nursery' => $nursery,
+            'stock' => $nursery->stocks()->where('id', $stock)->first(),
             'seed' => Seed::all(),
         ];
         return view('pages.stock.edit')->with($data);
     }
 
-    public function update(Stock $stock, Request $request)
+    public function update(Request $request, $id, $stock)
     {
+        // dd($request);
+        $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
-            'nursary_id' => ['required', 'numeric'],
+            // 'nursary_id' => ['required', 'numeric'],
             'seed_id' => ['required', 'numeric'],
             'date_check' => ['required', 'date'],
             'seed_good' => ['required', 'numeric'],
@@ -94,13 +103,14 @@ class StockController extends Controller
             'seed_out' => ['required', 'numeric'],
             'total_seed' => ['required', 'numeric'],
         ]);
-        $stock->update($request->all());
-        return redirect()->route('stock.index', ['nursary' => $request->nursary_id]);
+        $nursery->stocks()->find($stock)->update($request->except(['_method', '_token']));
+        return redirect()->route('stock.index', $nursery->id);
     }
 
-    public function destroy(Stock $stock)
+    public function destroy($id, $stock)
     {
-        $stock->delete();
-        return redirect()->route('stock.index', ['nursary' => $stock->nursary_id]);
+        $nursery = Nursery::findOrFail($id);
+        $nursery->stocks()->find($stock)->delete();
+        return redirect()->route('stock.index', $nursery->id);
     }
 }
