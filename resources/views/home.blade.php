@@ -113,9 +113,9 @@
                         <div class="col-6">
                             <div class="text-end">
                                 <h3 class="text-dark mt-1">
-                                    <span data-plugin="counterup">{{ number_format($nursary) }}</span>
+                                    <span data-plugin="counterup">{{ number_format($nursery) }}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">Nursary</p>
+                                <p class="text-muted mb-1 text-truncate">Nursery</p>
                             </div>
                         </div>
                     </div> <!-- end row-->

@@ -162,13 +162,28 @@
 
 @push('scripts')
 <script>
-    $('#seed_broken').change(function() {
-        let good = $('#seed_good').val();
-        let out = $('#seed_out').val();
-        let death = $('#seed_death').val();
-        let broken = $('#seed_broken').val();
-        let total = (parseInt(good) + parseInt(broken) + parseInt(death)) - parseInt(out);
-        $('#total_seed').val(total)
+    let seedOut = $('#seed_out');
+    let seedGood = $('#seed_good');
+    let seedBroken = $('#seed_broken');
+    let seedDeath = $('#seed_death');
+    let totalSeed = $('#total_seed');
+
+    seedOut.change(function() {
+        countTotalSeed();
     })
+    seedGood.change(function() {
+        countTotalSeed();
+    })
+    seedBroken.change(function() {
+        countTotalSeed();
+    })
+    seedDeath.change(function() {
+        countTotalSeed();
+    })
+
+    function countTotalSeed() {
+        let countSeed = (Number(seedGood.val()) + Number(seedBroken.val()) + Number(seedDeath.val())) - Number(seedOut.val());
+        totalSeed.val(countSeed);
+    }
 </script>
 @endpush
