@@ -28,7 +28,6 @@ Route::post('/daftar/relawan', 'VolunteerRegController@store')->name('reg.volunt
 Route::resource('program', 'ProgramController');
 Route::resource('program/{id}/subprogram', 'SubprogramController');
 Route::resource('volunteer', 'VolunteerController');
-// Route::resource('nursary', 'NursaryController');
 Route::resource('nursery', 'NurseryController');
 Route::resource('nursery/{id}/stock', 'StockController');
 Route::resource('seed', 'SeedController');
