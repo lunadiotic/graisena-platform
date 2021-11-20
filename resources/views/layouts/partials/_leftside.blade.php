@@ -101,7 +101,7 @@
                     <div class="collapse" id="sidebardatamaster">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('seed.index') }}">Seed</a>
+                                <a href="{{ route('seed.index') }}">Bibit</a>
                             </li>
                         </ul>
                     </div>
