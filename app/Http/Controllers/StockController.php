@@ -94,7 +94,6 @@ class StockController extends Controller
         // dd($request);
         $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
-            // 'nursary_id' => ['required', 'numeric'],
             'seed_id' => ['required', 'numeric'],
             'date_check' => ['required', 'date'],
             'seed_good' => ['required', 'numeric'],

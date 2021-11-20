@@ -87,7 +87,6 @@ class NurseryController extends Controller
      */
     public function edit(Nursery $nursery)
     {
-
         return view('pages.nursery.edit')->withData($nursery);
     }
 

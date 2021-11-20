@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distribution;
-use App\Nursary;
+use App\Nursery;
 use App\Subprogram;
 use App\Volunteer;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class HomeController extends Controller
             'subprogram' => Subprogram::count(),
             'volunteer' => Volunteer::count(),
             'distribution' => Distribution::count(),
-            'nursary' => Nursary::count()
+            'nursery' => Nursery::count()
         ];
         return view('home')->with($data);
     }

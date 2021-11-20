@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Nama Program</label>
+                                    <label for="title" class="form-label">Nama Nursery</label>
                                     <input type="text" id="title"
                                         class="form-control @error('title') is-invalid @enderror" name="title"
                                         value="{{ old('title') }}">
