@@ -47,9 +47,10 @@ class DistributionSeedController extends Controller
     public function create($id)
     {
         $distribution = Distribution::findOrFail($id);
+        $seed = Seed::all();
         $data = [
             'distribution' => $distribution,
-            'seed' => Seed::all(),
+            'seed' => $seed,
         ];
         return view('pages.distributionseed.create')->with($data);
     }
@@ -61,6 +62,7 @@ class DistributionSeedController extends Controller
             'seed_id' => ['required', 'numeric'],
             'total' => ['required', 'numeric']
         ]);
+        $request['user_id'] = auth()->user()->id;
         $distribution->distribution_seeds()->create($request->all());
         return redirect()->route('dist.seed.index', $distribution->id);
     }
@@ -75,12 +77,16 @@ class DistributionSeedController extends Controller
     public function edit($id, $seed)
     {
         $distribution = Distribution::findOrFail($id);
-        $data = [
-            'distribution' => $distribution,
-            'distribution_seed' => $distribution->distribution_seeds()->where('id', $seed)->first(),
-            'seed' => Seed::all(),
-        ];
-        return view('pages.distributionseed.edit')->with($data);
+        $distributionSeed = $distribution->distribution_seeds()->find($seed);
+        if (auth()->user()->can('edit', $distributionSeed)) {
+            $data = [
+                'distribution' => $distribution,
+                'distribution_seed' => $distributionSeed,
+                'seed' => Seed::all(),
+            ];
+            return view('pages.distributionseed.edit')->with($data);
+        }
+        return redirect()->back();
     }
 
     public function update(Request $request, $id, $seed)
@@ -90,14 +96,22 @@ class DistributionSeedController extends Controller
             'seed_id' => ['required', 'numeric'],
             'total' => ['required', 'numeric']
         ]);
-        $distribution->distribution_seeds()->find($seed)->update($request->except(['_method', '_token']));
-        return redirect()->route('dist.seed.index', $distribution->id);
+        $distributionSeed = $distribution->distribution_seeds()->find($seed);
+        if (auth()->user()->can('update', $distributionSeed)) {
+            $distributionSeed->update($request->except(['_method', '_token']));
+            return redirect()->route('dist.seed.index', $distribution->id);
+        }
+        return redirect()->back();
     }
 
     public function destroy($id, $seed)
     {
         $distribution = Distribution::findOrFail($id);
-        $distribution->distribution_seeds()->find($seed)->delete();
-        return redirect()->route('dist.seed.index', $distribution->id);
+        $distributionSeed = $distribution->distribution_seeds()->find($seed);
+        if (auth()->user()->can('delete', $distributionSeed)) {
+            $distributionSeed->delete();
+            return redirect()->route('stock.index', $distribution->id);
+        }
+        return redirect()->back();
     }
 }

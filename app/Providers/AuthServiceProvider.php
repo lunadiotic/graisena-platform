@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Distribution;
+use App\DistributionSeed;
 use App\Nursery;
+use App\Policies\DistributionPolicy;
+use App\Policies\DistributionSeedPolicy;
 use App\Policies\NurseryPolicy;
 use App\Policies\ProgramPolicy;
 use App\Policies\StockPolicy;
@@ -26,6 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         Subprogram::class => SubprogramPolicy::class,
         Nursery::class => NurseryPolicy::class,
         Stock::class => StockPolicy::class,
+        Distribution::class => DistributionPolicy::class,
+        DistributionSeed::class => DistributionSeedPolicy::class
     ];
 
     /**
