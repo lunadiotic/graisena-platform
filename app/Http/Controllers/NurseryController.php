@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Nursery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class NurseryController extends Controller
@@ -47,8 +48,10 @@ class NurseryController extends Controller
      */
     public function create()
     {
-
-        return view('pages.nursery.create');
+        if (auth()->user()->can('create', Nursery::class)) {
+            return view('pages.nursery.create');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -64,6 +67,7 @@ class NurseryController extends Controller
             'title' => ['required', 'string'],
             'manager' => ['required', 'string'],
         ]);
+        $request['user_id'] = auth()->user()->id
         Nursery::create($request->all());
         return redirect()->route('nursery.index');
     }
@@ -87,7 +91,10 @@ class NurseryController extends Controller
      */
     public function edit(Nursery $nursery)
     {
-        return view('pages.nursery.edit')->withData($nursery);
+        if (auth()->user()->can('edit', $nursery)) {
+            return view('pages.nursery.edit')->withData($nursery);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -99,12 +106,15 @@ class NurseryController extends Controller
      */
     public function update(Request $request, Nursery $nursery)
     {
-        $this->validate($request, [
-            'title' => ['required', 'string'],
-            'manager' => ['required', 'string'],
-        ]);
-        $nursery->update($request->all());
-        return redirect()->route('nursery.index');
+        if (auth()->user()->can('update', $nursery)) {
+            $this->validate($request, [
+                'title' => ['required', 'string'],
+                'manager' => ['required', 'string'],
+            ]);
+            $nursery->update($request->all());
+            return redirect()->route('nursery.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -115,7 +125,10 @@ class NurseryController extends Controller
      */
     public function destroy(Nursery $nursery)
     {
-        $nursery->delete();
-        return redirect()->route('nursery.index');
+        if (auth()->user()->can('delete', $nursery)) {
+            $nursery->delete();
+            return redirect()->route('nursery.index');
+        }
+        return redirect()->back();
     }
 }

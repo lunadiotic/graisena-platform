@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Nursery;
+use App\Policies\NurseryPolicy;
 use App\Policies\ProgramPolicy;
 use App\Policies\SubprogramPolicy;
 use App\Program;
@@ -19,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Program::class => ProgramPolicy::class,
-        Subprogram::class => SubprogramPolicy::class
+        Subprogram::class => SubprogramPolicy::class,
+        Nursery::class => NurseryPolicy::class
     ];
 
     /**
