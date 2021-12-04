@@ -76,9 +76,12 @@ class StockController extends Controller
 
     public function show($id, $stock)
     {
-        $nursery = Nursery::findOrFail($id);
-        $data = $nursery->stocks()->where('id', $stock)->first();
-        return view('pages.stock.show')->withData($data);
+        $data = [
+            'nursery' => $nursery = Nursery::findOrFail($id),
+            'data' => $data = $nursery->stocks()->where('id', $stock)->first()
+        ];
+        // dd($data);
+        return view('pages.stock.show')->with($data);
     }
 
     public function edit($id, $stock)
