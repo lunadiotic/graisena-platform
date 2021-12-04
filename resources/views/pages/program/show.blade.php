@@ -4,50 +4,6 @@
 @endpush
 
 @section('content')
-{{-- <!-- Start Content-->
-<div class="container-fluid">
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <h4 class="page-title">Detail: {{ $data->title }}</h4>
-            </div>
-        </div>
-    </div>
-    <!-- end page title -->
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-title d-flex justify-content-between">
-                        <span>Program</span>
-                        <span>
-                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
-                        </span>
-                    </h4>
-                    <div class="table-responsive">
-                        <table class="table table-borderless mb-0">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Judul</th>
-                                    <td>:</td>
-                                    <td>{{ $data->title }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Deskripsi</th>
-                                    <td>:</td>
-                                    <td>{{ $data->description }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div> <!-- end card body-->
-            </div> <!-- end card -->
-        </div><!-- end col-->
-    </div>
-    <!-- end row-->
-</div> <!-- container --> --}}
 
 <!-- Start Content-->
 <div class="container-fluid">
@@ -56,84 +12,35 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                {{-- <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Extras Pages</a></li>
-                        <li class="breadcrumb-item active">Invoice</li>
-                    </ol>
-                </div> --}}
-                <h4 class="page-title">Nama Program</h4>
+                <h4 class="page-title">{{ $data->title }}</h4>
             </div>
         </div>
     </div>
     <!-- end page title -->
+    @php
+        $item = $data->subprogram()->get();
+    @endphp
 
+    @foreach ($item as $subprogram)
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <!-- Logo & title -->
-                    {{-- <div class="clearfix">
-                        <div class="float-start">
-                            <div class="auth-logo">
-                                <div class="logo logo-dark">
-                                    <span class="logo-lg">
-                                        <img src="../assets/images/logo-dark.png" alt="" height="22">
-                                    </span>
-                                </div>
-
-                                <div class="logo logo-light">
-                                    <span class="logo-lg">
-                                        <img src="../assets/images/logo-light.png" alt="" height="22">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="float-end">
-                            <h4 class="m-0 d-print-none">Invoice</h4>
-                        </div>
-                    </div> --}}
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mt-3">
-                                <p><b>Nama Program</b></p>
-                                <p class="text-muted">description panjang wire:Thanks a lot because you keep purchasing our products. Our company promises to provide high quality products for you as well as outstanding customer service for every transaction. </p>
+                                <p><b>{{ $data->title }}</b></p>
+                                <p class="text-muted">{{ $data->description }}</p>
                             </div>
-
                         </div><!-- end col -->
                         <div class="col-md-4 offset-md-2">
                             <div class="mt-3 float-end">
-                                <p><strong>Tanggal Mulai : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; Jan 17, 2016</span></p>
-                                <p><strong>Tanggal Selesai : </strong> <span class="float-end"><span class="badge bg-danger">Lokasi</span></span></p>
-                                <p><strong>Order No. : </strong> <span class="float-end">000028 </span></p>
+                                <p><strong>Tanggal Mulai : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; {{ $subprogram->date_start }} </span></p>
+                                <p><strong>Tanggal Selesai : </strong> <span class="float-end">{{ $subprogram->date_end }}</span></p>
+                                <p><strong>Lokasi</strong> <span class="float-end">{{ $subprogram->location }} </span></p>
                             </div>
                         </div><!-- end col -->
                     </div>
-                    <!-- end row -->
-
-                    {{-- <div class="row mt-3">
-                        <div class="col-sm-6">
-                            <h6>Billing Address</h6>
-                            <address>
-                                Stanley Jones<br>
-                                795 Folsom Ave, Suite 600<br>
-                                San Francisco, CA 94107<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                            </address>
-                        </div> <!-- end col -->
-
-                        <div class="col-sm-6">
-                            <h6>Shipping Address</h6>
-                            <address>
-                                Stanley Jones<br>
-                                795 Folsom Ave, Suite 600<br>
-                                San Francisco, CA 94107<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                            </address>
-                        </div> <!-- end col -->
-                    </div> --}}
                     <!-- end row -->
 
                     <div class="row">
@@ -143,49 +50,28 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 10%">#</th>
-                                        {{-- <th>Item</th> --}}
-                                        <th style="width: 10%">Jumlah laki-Laki</th>
-                                        <th style="width: 10%">Jumlah Perempuan</th>
-                                        <th style="width: 10%">10-19</th>
-                                        <th style="width: 10%">20-29</th>
-                                        <th style="width: 10%">30-39</th>
-                                        <th style="width: 10%">40-49</th>
-                                        <th style="width: 10%">50-59</th>
-                                        <th style="width: 10%" class="text-end">>60</th>
+                                        <th class="text-center">laki-Laki</th>
+                                        <th class="text-center">Perempuan</th>
+                                        <th class="text-center">10-19</th>
+                                        <th class="text-center">20-29</th>
+                                        <th class="text-center">30-39</th>
+                                        <th class="text-center">40-49</th>
+                                        <th class="text-center">50-59</th>
+                                        <th class="text-center">>60</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        {{-- <td>
-                                            <b>Web Design</b> <br/>
-                                            2 Pages static website - my website
-                                        </td> --}}
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td class="text-end">$660.00</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td class="text-center">{{ $subprogram->total_male }}</td>
+                                        <td class="text-center">{{ $subprogram->total_female }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_1 }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_2 }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_3 }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_4 }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_5 }}</td>
+                                        <td class="text-center">{{ $subprogram->range_age_6 }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        {{-- <td>
-                                            <b>Software Development</b> <br/>
-                                            Invoice editor software - AB'c Software
-                                        </td> --}}
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td>$30</td>
-                                        <td>22</td>
-                                        <td class="text-end">$660.00</td>
-                                    </tr>
-
                                     </tbody>
                                 </table>
                             </div> <!-- end table-responsive -->
@@ -194,24 +80,11 @@
                     <!-- end row -->
 
                     <div class="row">
-                        {{-- <div class="col-sm-6">
-                            <div class="clearfix pt-5">
-                                <h6 class="text-muted">Notes:</h6>
-
-                                <small class="text-muted">
-                                    All accounts are to be paid within 7 days from receipt of
-                                    invoice. To be paid by cheque or credit card or direct payment
-                                    online. If account is not paid within 7 days the credits details
-                                    supplied as confirmation of work undertaken will be charged the
-                                    agreed quoted fee noted above.
-                                </small>
-                            </div>
-                        </div> <!-- end col --> --}}
                         <div class="col-sm-12">
                             <div class="float-end">
-                                <p><b>Anggaran:</b> <span class="float-end">$4597.50</span></p>
-                                <p><b>Terpakai:</b> <span class="float-end"> &nbsp;&nbsp;&nbsp; $459.75</span></p>
-                                <h3>$4137.75 USD</h3>
+                                <p><b>Anggaran:</b> <span class="float-end">{{ $subprogram->budget }}</span></p>
+                                <p><b>Terpakai:</b> <span class="float-end"> &nbsp;&nbsp;&nbsp; {{ $subprogram->used }}</span></p>
+                                <h3>{{ $subprogram->balance }}</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div> <!-- end col -->
@@ -221,7 +94,6 @@
                     <div class="mt-4 mb-1">
                         <div class="text-end d-print-none">
                             <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-printer me-1"></i> Print</a>
-                            {{-- <a href="#" class="btn btn-info waves-effect waves-light">Submit</a> --}}
                         </div>
                     </div>
                 </div>
@@ -229,6 +101,8 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
+
+    @endforeach
 
 </div> <!-- container -->
 @endsection
