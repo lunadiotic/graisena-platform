@@ -104,6 +104,11 @@
                                 <a href="{{ route('seed.index') }}">Bibit</a>
                             </li>
                         </ul>
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('user.index') }}">Pengguna</a>
+                            </li>
+                        </ul>
                     </div>
                 </li>
             </ul>
