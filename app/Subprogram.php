@@ -23,4 +23,14 @@ class Subprogram extends Model
     {
         return $this->belongsTo(Program::class);
     }
+
+    /**
+     * Get the user that owns the Subprogram
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

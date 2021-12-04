@@ -34,6 +34,8 @@ class CreateSubprogramsTable extends Migration
             $table->unsignedInteger('range_age_5')->nullable(); //50-59
             $table->unsignedInteger('range_age_6')->nullable(); //60~
             $table->string('attachment')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
