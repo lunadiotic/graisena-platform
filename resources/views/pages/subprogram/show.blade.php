@@ -42,6 +42,7 @@
                                     <tr>
                                         <th scope="row">
                                             <div class="float-end">
+                                                <p><strong>Partner : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; {{ $data->partner }} </span></p>
                                                 <p><strong>Tanggal Mulai : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; {{ $data->date_start }} </span></p>
                                                 <p><strong>Tanggal Selesai : </strong> <span class="float-end">{{ $data->date_end }}</span></p>
                                                 <p><strong>Lokasi : </strong> <span class="float-end">{{ $data->location }} </span></p>
