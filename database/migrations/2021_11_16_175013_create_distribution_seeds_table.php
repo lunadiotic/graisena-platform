@@ -20,6 +20,8 @@ class CreateDistributionSeedsTable extends Migration
             $table->unsignedBigInteger('seed_id');
             $table->foreign('seed_id')->references('id')->on('seeds')->onDelete('cascade');
             $table->unsignedBigInteger('total');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

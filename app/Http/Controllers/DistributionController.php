@@ -56,8 +56,11 @@ class DistributionController extends Controller
      */
     public function create()
     {
-        $nursery = Nursery::all();
-        return view('pages.distribution.create')->withData($nursery);
+        if (auth()->user()->can('create', Nursery::class)) {
+            $nursery = Nursery::all();
+            return view('pages.distribution.create')->withData($nursery);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -75,6 +78,7 @@ class DistributionController extends Controller
             'longitude' => ['required', 'string'],
             'latitude' => ['required', 'string'],
         ]);
+        $request['user_id'] = auth()->user()->id;
         Distribution::create($request->all());
         return redirect()->route('distribution.index');
     }
@@ -102,12 +106,15 @@ class DistributionController extends Controller
      */
     public function edit(Distribution $distribution)
     {
-        $data = [
-            'nursary' => Nursery::all(),
-            'distribution' => $distribution
+        if (auth()->user()->can('edit', $distribution)) {
+            $data = [
+                'nursary' => Nursery::all(),
+                'distribution' => $distribution
 
-        ];
-        return view('pages.distribution.edit')->with($data);
+            ];
+            return view('pages.distribution.edit')->with($data);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -119,15 +126,18 @@ class DistributionController extends Controller
      */
     public function update(Request $request, Distribution $distribution)
     {
-        $this->validate($request, [
-            'nursery_id' => ['required', 'numeric'],
-            'title' => ['required', 'string'],
-            'location' => ['required', 'string'],
-            'longitude' => ['required', 'string'],
-            'latitude' => ['required', 'string'],
-        ]);
-        $distribution->update($request->all());
-        return view('pages.distribution.index');
+        if (auth()->user()->can('update', $distribution)) {
+            $this->validate($request, [
+                'nursery_id' => ['required', 'numeric'],
+                'title' => ['required', 'string'],
+                'location' => ['required', 'string'],
+                'longitude' => ['required', 'string'],
+                'latitude' => ['required', 'string'],
+            ]);
+            $distribution->update($request->all());
+            return view('pages.distribution.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -138,7 +148,10 @@ class DistributionController extends Controller
      */
     public function destroy(Distribution $distribution)
     {
-        $distribution->delete();
-        return view('pages.distribution.index');
+        if (auth()->user()->can('delete', $distribution)) {
+            $distribution->delete();
+            return view('pages.distribution.index');
+        }
+        return redirect()->back();
     }
 }
