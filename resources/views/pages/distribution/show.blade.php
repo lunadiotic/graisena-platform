@@ -17,14 +17,11 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title  d-flex justify-content-between">
                         <span>Distribution</span>
-                        <span>
-                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
-                        </span>
                     </h4>
                     <div class="table-responsive">
                         <table class="table table-borderless mb-0">
@@ -63,7 +60,7 @@
     <!-- end row-->
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title  d-flex justify-content-between">
@@ -81,6 +78,12 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="mt-4 mb-1">
+                        <div class="text-end d-print-none">
+                            <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-printer me-1"></i> Print</a>
+                        </div>
                     </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
