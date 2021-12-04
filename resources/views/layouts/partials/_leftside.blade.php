@@ -32,16 +32,18 @@
                     </a>
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
+                            @canany(['isAdmin', 'isContributor'])
                             <li>
                                 <a href="{{ route('program.create') }}">Add New</a>
                             </li>
+                            @endcanany
                             <li>
                                 <a href="{{ route('program.index') }}">Program</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-
+                @can('isAdmin')
                 <li>
                     <a href="#sidebarVolunteer" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
@@ -58,7 +60,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @endcan
                 <li>
                     <a href="#sidebarNursary" data-bs-toggle="collapse">
                         <i data-feather="shield"></i>
@@ -66,9 +68,11 @@
                     </a>
                     <div class="collapse" id="sidebarNursary">
                         <ul class="nav-second-level">
+                            @canany(['isAdmin', 'isContributor'])
                             <li>
                                 <a href="{{ route('nursery.create') }}">Add New</a>
                             </li>
+                            @endcanany
                             <li>
                                 <a href="{{ route('nursery.index') }}">Nursery</a>
                             </li>
@@ -83,16 +87,18 @@
                     </a>
                     <div class="collapse" id="sidebardistribution">
                         <ul class="nav-second-level">
+                            @canany(['isAdmin', 'isContributor'])
                             <li>
                                 <a href="{{ route('distribution.create') }}">Add New</a>
                             </li>
+                            @endcanany
                             <li>
                                 <a href="{{ route('distribution.index') }}">Distribution</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-
+                @can('isAdmin')
                 <li>
                     <a href="#sidebardatamaster" data-bs-toggle="collapse">
                         <i data-feather="box"></i>
@@ -111,6 +117,7 @@
                         </ul>
                     </div>
                 </li>
+                @endcan
             </ul>
 
         </div>

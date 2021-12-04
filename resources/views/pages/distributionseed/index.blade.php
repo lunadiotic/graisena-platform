@@ -29,7 +29,9 @@
                         <span>Basic Data Table</span>
                         <span>
                             <a href="{{ route('distribution.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            @canany(['isAdmin', 'isContributor'])
                             <a href="{{ route('dist.seed.create', $data->id) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
+                            @endcanany
                         </span>
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">

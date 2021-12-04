@@ -48,6 +48,7 @@ class StockController extends Controller
 
     public function create($id)
     {
+        $this->checkGuest();
         $nursery = Nursery::findOrFail($id);
         $seed = Seed::all();
         $data = [
@@ -59,6 +60,7 @@ class StockController extends Controller
 
     public function store($id, Request $request)
     {
+        $this->checkGuest();
         $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
             'seed_id' => ['required', 'numeric'],
@@ -86,6 +88,7 @@ class StockController extends Controller
 
     public function edit($id, $stock)
     {
+        $this->checkGuest();
         $nursery = Nursery::findOrFail($id);
         $stockSeed = $nursery->stocks()->find($stock);
         $seed = Seed::all();
@@ -102,6 +105,7 @@ class StockController extends Controller
 
     public function update(Request $request, $id, $stock)
     {
+        $this->checkGuest();
         $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
             'seed_id' => ['required', 'numeric'],
@@ -122,6 +126,7 @@ class StockController extends Controller
 
     public function destroy($id, $stock)
     {
+        $this->checkGuest();
         $nursery = Nursery::findOrFail($id);
         $stockSeed = $nursery->stocks()->find($stock);
         if (auth()->user()->can('delete', $stockSeed)) {

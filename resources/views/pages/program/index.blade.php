@@ -27,9 +27,11 @@
                 <div class="card-body">
                     <h4 class="header-title d-flex justify-content-between">
                         <span>Basic Data Table</span>
+                        @canany(['isAdmin', 'isContributor'])
                         <span>
                             <a href="{{ route('program.create') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
                         </span>
+                        @endcanany
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">
                         <thead>

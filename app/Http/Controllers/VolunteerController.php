@@ -51,6 +51,7 @@ class VolunteerController extends Controller
      */
     public function create()
     {
+        $this->checkGuest();
         $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('pages.volunteer.create')->with([
             'provinces' => $provinces
@@ -65,6 +66,7 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkGuest();
         $this->validate($request, [
             'name' => ['required'],
             'gender' => ['required'],
@@ -108,6 +110,7 @@ class VolunteerController extends Controller
      */
     public function edit($id)
     {
+        $this->checkGuest();
         $data = Volunteer::findOrFail($id);
         $provinces = Province::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('pages.volunteer.edit')->with([
@@ -125,6 +128,7 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkGuest();
         $data = Volunteer::findOrFail($id);
         $this->validate($request, [
             'name' => ['required'],
@@ -154,6 +158,7 @@ class VolunteerController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkGuest();
         $data = Volunteer::findOrFail($id);
         $data->delete();
         return redirect()->route('volunteer.index');

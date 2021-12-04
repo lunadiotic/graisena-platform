@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -58,6 +59,8 @@ class ProgramController extends Controller
      */
     public function create()
     {
+        $this->checkGuest();
+
         $user = Auth::user();
         if ($user->can('create', Program::class)) {
             return view('pages.program.create');
@@ -73,6 +76,8 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkGuest();
+
         $this->validate($request, [
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
@@ -103,6 +108,8 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
+        $this->checkGuest();
+
         $data = Program::findOrFail($id);
         if (auth()->user()->can('edit', $data)) {
             return view('pages.program.edit')->withData($data);
@@ -119,6 +126,8 @@ class ProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkGuest();
+
         $data = Program::findOrFail($id);
         if (auth()->user()->can('update', $data)) {
 
@@ -141,6 +150,8 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkGuest();
+
         $data = Program::findOrFail($id);
         if (auth()->user()->can('delete', $data)) {
             $data->delete();

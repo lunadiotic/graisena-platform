@@ -56,6 +56,7 @@ class SubprogramController extends Controller
      */
     public function create($id)
     {
+        $this->checkGuest();
         $program = Program::findOrFail($id);
         return view('pages.subprogram.create')->with([
             'program' => $program
@@ -70,6 +71,7 @@ class SubprogramController extends Controller
      */
     public function store($id, Request $request)
     {
+        $this->checkGuest();
         $program = Program::findOrFail($id);
         $this->validate($request, [
             'date_start' => ['required'],
@@ -118,6 +120,7 @@ class SubprogramController extends Controller
      */
     public function edit($id, $subprogram)
     {
+        $this->checkGuest();
         $program = Program::findOrFail($id);
         $data = $program->subprogram()->where('id', $subprogram)->first();
         if (auth()->user()->can('edit', $data)) {
@@ -138,6 +141,7 @@ class SubprogramController extends Controller
      */
     public function update(Request $request, $id, $subprogram)
     {
+        $this->checkGuest();
         $program = Program::findOrFail($id);
         $this->validate($request, [
             'date_start' => ['required'],
@@ -174,6 +178,7 @@ class SubprogramController extends Controller
      */
     public function destroy($id, $subprogram)
     {
+        $this->checkGuest();
         $program = Program::findOrFail($id);
         $subProgram = $program->subprogram()->find($subprogram);
         if (auth()->user()->can('delete', $subProgram)) {

@@ -46,6 +46,8 @@ class DistributionSeedController extends Controller
 
     public function create($id)
     {
+        $this->checkGuest();
+
         $distribution = Distribution::findOrFail($id);
         $seed = Seed::all();
         $data = [
@@ -57,6 +59,8 @@ class DistributionSeedController extends Controller
 
     public function store($id, Request $request)
     {
+        $this->checkGuest();
+
         $distribution = Distribution::findOrFail($id);
         $this->validate($request, [
             'seed_id' => ['required', 'numeric'],
@@ -78,6 +82,8 @@ class DistributionSeedController extends Controller
 
     public function edit($id, $seed)
     {
+        $this->checkGuest();
+
         $distribution = Distribution::findOrFail($id);
         $distributionSeed = $distribution->distribution_seeds()->find($seed);
         if (auth()->user()->can('edit', $distributionSeed)) {
@@ -93,6 +99,8 @@ class DistributionSeedController extends Controller
 
     public function update(Request $request, $id, $seed)
     {
+        $this->checkGuest();
+
         $distribution = Distribution::findOrFail($id);
         $this->validate($request, [
             'seed_id' => ['required', 'numeric'],
@@ -108,6 +116,8 @@ class DistributionSeedController extends Controller
 
     public function destroy($id, $seed)
     {
+        $this->checkGuest();
+        
         $distribution = Distribution::findOrFail($id);
         $distributionSeed = $distribution->distribution_seeds()->find($seed);
         if (auth()->user()->can('delete', $distributionSeed)) {

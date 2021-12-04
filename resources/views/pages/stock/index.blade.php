@@ -29,7 +29,9 @@
                         <span>Basic Data Table</span>
                         <span>
                             <a href="{{ route('nursery.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
+                            @canany(['isAdmin', 'isContributor'])
                             <a href="{{ route('stock.create', $nursery->id) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
+                            @endcanany
                         </span>
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">

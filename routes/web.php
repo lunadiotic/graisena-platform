@@ -25,15 +25,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/daftar/relawan', 'VolunteerRegController@index')->name('reg.volunteer');
 Route::post('/daftar/relawan', 'VolunteerRegController@store')->name('reg.volunteer');;
 
-Route::resource('user', 'UserController');
 Route::resource('program', 'ProgramController');
 Route::resource('program/{id}/subprogram', 'SubprogramController');
 Route::resource('volunteer', 'VolunteerController');
 Route::resource('nursery', 'NurseryController');
 Route::resource('nursery/{id}/stock', 'StockController');
-Route::resource('seed', 'SeedController');
 Route::resource('distribution', 'DistributionController');
 Route::resource('distribution/{id}/seed', 'DistributionSeedController', [ 'as' => 'dist' ]);
+Route::resource('seed', 'SeedController')->middleware('can:isAdmin');
+Route::resource('user', 'UserController')->middleware('can:isAdmin');
 
 // Profile
 Route::get('/profile', 'ProfileController@index')->name('profile.index');

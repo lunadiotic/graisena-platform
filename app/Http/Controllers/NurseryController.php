@@ -58,6 +58,8 @@ class NurseryController extends Controller
      */
     public function create()
     {
+        $this->checkGuest();
+
         if (auth()->user()->can('create', Nursery::class)) {
             return view('pages.nursery.create');
         }
@@ -72,7 +74,7 @@ class NurseryController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->checkGuest();
         $this->validate($request, [
             'title' => ['required', 'string'],
             'manager' => ['required', 'string'],
@@ -101,6 +103,7 @@ class NurseryController extends Controller
      */
     public function edit(Nursery $nursery)
     {
+        $this->checkGuest();
         if (auth()->user()->can('edit', $nursery)) {
             return view('pages.nursery.edit')->withData($nursery);
         }
@@ -116,6 +119,7 @@ class NurseryController extends Controller
      */
     public function update(Request $request, Nursery $nursery)
     {
+        $this->checkGuest();
         if (auth()->user()->can('update', $nursery)) {
             $this->validate($request, [
                 'title' => ['required', 'string'],
@@ -135,6 +139,7 @@ class NurseryController extends Controller
      */
     public function destroy(Nursery $nursery)
     {
+        $this->checkGuest();
         if (auth()->user()->can('delete', $nursery)) {
             $nursery->delete();
             return redirect()->route('nursery.index');

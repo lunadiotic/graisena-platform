@@ -56,6 +56,8 @@ class DistributionController extends Controller
      */
     public function create()
     {
+        $this->checkGuest();
+
         if (auth()->user()->can('create', Nursery::class)) {
             $nursery = Nursery::all();
             return view('pages.distribution.create')->withData($nursery);
@@ -71,6 +73,8 @@ class DistributionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkGuest();
+
         $this->validate($request, [
             'nursery_id' => ['required', 'numeric'],
             'title' => ['required', 'string'],
@@ -106,6 +110,8 @@ class DistributionController extends Controller
      */
     public function edit(Distribution $distribution)
     {
+        $this->checkGuest();
+
         if (auth()->user()->can('edit', $distribution)) {
             $data = [
                 'nursary' => Nursery::all(),
@@ -126,6 +132,8 @@ class DistributionController extends Controller
      */
     public function update(Request $request, Distribution $distribution)
     {
+        $this->checkGuest();
+
         if (auth()->user()->can('update', $distribution)) {
             $this->validate($request, [
                 'nursery_id' => ['required', 'numeric'],
@@ -148,6 +156,8 @@ class DistributionController extends Controller
      */
     public function destroy(Distribution $distribution)
     {
+        $this->checkGuest();
+        
         if (auth()->user()->can('delete', $distribution)) {
             $distribution->delete();
             return view('pages.distribution.index');
