@@ -103,9 +103,11 @@ class SubprogramController extends Controller
      */
     public function show($id, $subprogram)
     {
-        $program = Program::findOrFail($id);
-        $data = $program->subprogram()->where('id', $subprogram)->first();
-        return view('pages.subprogram.show')->withData($data);
+        $data = [
+            'program' => $program = Program::findOrFail($id),
+            'data' => $program->subprogram()->where('id', $subprogram)->first()
+        ];
+        return view('pages.subprogram.show')->with($data);
     }
 
     /**

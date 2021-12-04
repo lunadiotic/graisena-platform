@@ -32,7 +32,7 @@ class DistributionSeedController extends Controller
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
-                        'url_show' => ('#'),
+                        'url_show' => route('dist.seed.show', [$model->distribution->id, $model->id]),
                         'url_edit' => route('dist.seed.edit', [$model->distribution->id, $model->id]),
                         'url_destroy' => route('dist.seed.destroy', [$model->distribution->id, $model->id])
                     ]);
@@ -69,9 +69,11 @@ class DistributionSeedController extends Controller
 
     public function show($id, $seed)
     {
-        $distribution = Distribution::findOrFail($id);
-        $data = $distribution->distribution_seeds()->where('id', $seed)->first();
-        return view('pages.distributionseed.show')->withData($data);
+        $data = [
+            'distribution' => $distribution = Distribution::findOrFail($id),
+            'data' => $distribution->distribution_seeds()->where('id', $seed)->first()
+        ];
+        return view('pages.distributionseed.show')->with($data);
     }
 
     public function edit($id, $seed)
