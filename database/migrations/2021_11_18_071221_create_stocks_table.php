@@ -25,6 +25,8 @@ class CreateStocksTable extends Migration
             $table->unsignedBigInteger('seed_death');
             $table->unsignedBigInteger('seed_out');
             $table->unsignedBigInteger('total_seed');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

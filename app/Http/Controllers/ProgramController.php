@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -57,7 +58,11 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        return view('pages.program.create');
+        $user = Auth::user();
+        if ($user->can('create', Program::class)) {
+            return view('pages.program.create');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -73,7 +78,8 @@ class ProgramController extends Controller
             'description' => ['required', 'string'],
         ]);
 
-        Program::create($request->all());
+        auth()->user()->programs()->create($request->all());
+
         return redirect()->route('program.index');
     }
 
@@ -98,7 +104,10 @@ class ProgramController extends Controller
     public function edit($id)
     {
         $data = Program::findOrFail($id);
-        return view('pages.program.edit')->withData($data);
+        if (auth()->user()->can('edit', $data)) {
+            return view('pages.program.edit')->withData($data);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -111,14 +120,17 @@ class ProgramController extends Controller
     public function update(Request $request, $id)
     {
         $data = Program::findOrFail($id);
+        if (auth()->user()->can('update', $data)) {
 
-        $this->validate($request, [
-            'title' => ['required', 'string'],
-            'description' => ['required', 'string'],
-        ]);
+            $this->validate($request, [
+                'title' => ['required', 'string'],
+                'description' => ['required', 'string'],
+            ]);
 
-        $data->update($request->all());
-        return redirect()->route('program.index');
+            $data->update($request->all());
+            return redirect()->route('program.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -130,7 +142,10 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         $data = Program::findOrFail($id);
-        $data->delete();
-        return redirect()->route('program.index');
+        if (auth()->user()->can('delete', $data)) {
+            $data->delete();
+            return redirect()->route('program.index');
+        }
+        return redirect()->back();
     }
 }

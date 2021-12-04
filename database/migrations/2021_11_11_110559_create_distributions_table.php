@@ -21,6 +21,8 @@ class CreateDistributionsTable extends Migration
             $table->string('location');
             $table->string('longitude');
             $table->string('latitude');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

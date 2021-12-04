@@ -2,6 +2,18 @@
 
 namespace App\Providers;
 
+use App\Distribution;
+use App\DistributionSeed;
+use App\Nursery;
+use App\Policies\DistributionPolicy;
+use App\Policies\DistributionSeedPolicy;
+use App\Policies\NurseryPolicy;
+use App\Policies\ProgramPolicy;
+use App\Policies\StockPolicy;
+use App\Policies\SubprogramPolicy;
+use App\Program;
+use App\Stock;
+use App\Subprogram;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
+        Program::class => ProgramPolicy::class,
+        Subprogram::class => SubprogramPolicy::class,
+        Nursery::class => NurseryPolicy::class,
+        Stock::class => StockPolicy::class,
+        Distribution::class => DistributionPolicy::class,
+        DistributionSeed::class => DistributionSeedPolicy::class
     ];
 
     /**

@@ -90,6 +90,7 @@ class SubprogramController extends Controller
             'range_age_6' => ['nullable', 'numeric'],
             'attachment' => ['nullable', 'string'],
         ]);
+        $request['user_id'] = auth()->user()->id;
         $program->subprogram()->create($request->all());
         return redirect()->route('subprogram.index', $program->id);
     }
@@ -117,10 +118,13 @@ class SubprogramController extends Controller
     {
         $program = Program::findOrFail($id);
         $data = $program->subprogram()->where('id', $subprogram)->first();
-        return view('pages.subprogram.edit')->with([
-            'program' => $program,
-            'data' => $data
-        ]);
+        if (auth()->user()->can('edit', $data)) {
+            return view('pages.subprogram.edit')->with([
+                'program' => $program,
+                'data' => $data
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -152,8 +156,12 @@ class SubprogramController extends Controller
             'range_age_6' => ['nullable', 'numeric'],
             'attachment' => ['nullable', 'string'],
         ]);
-        $program->subprogram()->find($subprogram)->update($request->except(['_method', '_token']));
-        return redirect()->route('subprogram.index', $program->id);
+        $subProgram = $program->subprogram()->find($subprogram);
+        if (auth()->user()->can('update', $subProgram)) {
+            $subProgram->update($request->except(['_method', '_token']));
+            return redirect()->route('subprogram.index', $program->id);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -165,7 +173,11 @@ class SubprogramController extends Controller
     public function destroy($id, $subprogram)
     {
         $program = Program::findOrFail($id);
-        $program->subprogram()->find($subprogram)->delete();
-        return redirect()->route('subprogram.index', $program->id);
+        $subProgram = $program->subprogram()->find($subprogram);
+        if (auth()->user()->can('delete', $subProgram)) {
+            $subProgram->delete();
+            return redirect()->route('subprogram.index', $program->id);
+        }
+        return redirect()->back();
     }
 }
