@@ -48,9 +48,11 @@ class StockController extends Controller
 
     public function create($id)
     {
+        $nursery = Nursery::findOrFail($id);
+        $seed = Seed::all();
         $data = [
-            'nursery' => Nursery::findOrFail($id),
-            'seed' => Seed::all(),
+            'nursery' => $nursery,
+            'seed' => $seed,
         ];
         return view('pages.stock.create')->with($data);
     }
@@ -67,6 +69,7 @@ class StockController extends Controller
             'seed_out' => ['required', 'numeric'],
             'total_seed' => ['required', 'numeric'],
         ]);
+        $request['user_id'] = auth()->user()->id;
         $nursery->stocks()->create($request->all());
         return redirect()->route('stock.index', $nursery->id);
     }
@@ -81,17 +84,21 @@ class StockController extends Controller
     public function edit($id, $stock)
     {
         $nursery = Nursery::findOrFail($id);
-        $data = [
-            'nursery' => $nursery,
-            'stock' => $nursery->stocks()->where('id', $stock)->first(),
-            'seed' => Seed::all(),
-        ];
-        return view('pages.stock.edit')->with($data);
+        $stockSeed = $nursery->stocks()->find($stock);
+        $seed = Seed::all();
+        if (auth()->user()->can('edit', $stockSeed)) {
+            $data = [
+                'nursery' => $nursery,
+                'stock' => $stockSeed,
+                'seed' => $seed,
+            ];
+            return view('pages.stock.edit')->with($data);
+        }
+        return redirect()->back();
     }
 
     public function update(Request $request, $id, $stock)
     {
-        // dd($request);
         $nursery = Nursery::findOrFail($id);
         $this->validate($request, [
             'seed_id' => ['required', 'numeric'],
@@ -102,14 +109,22 @@ class StockController extends Controller
             'seed_out' => ['required', 'numeric'],
             'total_seed' => ['required', 'numeric'],
         ]);
-        $nursery->stocks()->find($stock)->update($request->except(['_method', '_token']));
-        return redirect()->route('stock.index', $nursery->id);
+        $stockSeed = $nursery->stocks()->find($stock);
+        if (auth()->user()->can('update', $stockSeed)) {
+            $stockSeed->update($request->except(['_method', '_token']));
+            return redirect()->route('stock.index', $nursery->id);
+        }
+        return redirect()->back();
     }
 
     public function destroy($id, $stock)
     {
         $nursery = Nursery::findOrFail($id);
-        $nursery->stocks()->find($stock)->delete();
-        return redirect()->route('stock.index', $nursery->id);
+        $stockSeed = $nursery->stocks()->find($stock);
+        if (auth()->user()->can('delete', $stockSeed)) {
+            $stockSeed->delete();
+            return redirect()->route('stock.index', $nursery->id);
+        }
+        return redirect()->back();
     }
 }

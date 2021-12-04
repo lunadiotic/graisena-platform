@@ -67,7 +67,7 @@ class NurseryController extends Controller
             'title' => ['required', 'string'],
             'manager' => ['required', 'string'],
         ]);
-        $request['user_id'] = auth()->user()->id
+        $request['user_id'] = auth()->user()->id;
         Nursery::create($request->all());
         return redirect()->route('nursery.index');
     }

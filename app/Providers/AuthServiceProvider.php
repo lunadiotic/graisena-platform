@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Nursery;
 use App\Policies\NurseryPolicy;
 use App\Policies\ProgramPolicy;
+use App\Policies\StockPolicy;
 use App\Policies\SubprogramPolicy;
 use App\Program;
+use App\Stock;
 use App\Subprogram;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -22,7 +24,8 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Program::class => ProgramPolicy::class,
         Subprogram::class => SubprogramPolicy::class,
-        Nursery::class => NurseryPolicy::class
+        Nursery::class => NurseryPolicy::class,
+        Stock::class => StockPolicy::class,
     ];
 
     /**
