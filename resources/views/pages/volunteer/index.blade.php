@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nomor ID</th>
                                 <th>Nama</th>
                                 <th>Gender</th>
                                 <th>Kota</th>
@@ -84,6 +85,7 @@
             ajax: "{{ route('volunteer.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
+                {data: 'identity_number', name: 'identity_number'},
                 {data: 'name', name: 'name'},
                 {data : function(data) {
                     if (data.gender == 'm') {

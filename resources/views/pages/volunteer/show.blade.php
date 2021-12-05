@@ -24,8 +24,13 @@
                         <span>Relawan</span>
                     </h4>
                     <div class="table-responsive">
-                        <table class="table table-borderless mb-0">
+                        <table class="table table-borderless mb-0" style="width: 100%">
                             <tbody>
+                                <tr>
+                                    <th scope="row" style="width: 23%">Nomor ID</th>
+                                    <td style="width: 1%">:</td>
+                                    <td>{{ $volunteer->identity_number }}</td>
+                                </tr>
                                 <tr>
                                     <th scope="row">Nama</th>
                                     <td>:</td>
