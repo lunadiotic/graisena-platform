@@ -53,6 +53,7 @@
                                             <p><strong>Tanggal Mulai : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; {{ $subprogram->date_start }} </span></p>
                                             <p><strong>Tanggal Selesai : </strong> <span class="float-end">{{ $subprogram->date_end }}</span></p>
                                             <p><strong>Lokasi : </strong> <span class="float-end">{{ $subprogram->location }} </span></p>
+                                            <p><strong>Status : </strong> <span class="float-end">{{ $subprogram->status }} </span></p>
                                         </div>
                                     </th>
                                 </tr>

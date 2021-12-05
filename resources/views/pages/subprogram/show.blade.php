@@ -46,6 +46,7 @@
                                                 <p><strong>Tanggal Mulai : </strong> <span class="float-end"> &nbsp;&nbsp;&nbsp;&nbsp; {{ $data->date_start }} </span></p>
                                                 <p><strong>Tanggal Selesai : </strong> <span class="float-end">{{ $data->date_end }}</span></p>
                                                 <p><strong>Lokasi : </strong> <span class="float-end">{{ $data->location }} </span></p>
+                                                <p><strong>Status : </strong> <span class="float-end">{{ $data->status }} </span></p>
                                             </div>
                                         </th>
                                     </tr>

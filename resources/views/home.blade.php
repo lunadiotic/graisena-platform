@@ -146,7 +146,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $item->date_start->toDateString() }}</td>
                                 <td class="text-center">{{ $item->program->title }}</td>
-                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                                <td class="text-center">{{ 1 + $item->date_start->diffInDays($item->date_end) }}</td>
                             </tr>
                                 @endforeach
                             </tbody>
@@ -176,7 +176,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $item->date_start->toDateString() }}</td>
                                 <td class="text-center">{{ $item->program->title }}</td>
-                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                                <td class="text-center">{{ 1 + $item->date_start->diffInDays($item->date_end) }}</td>
                             </tr>
                                 @endforeach
                             </tbody>
@@ -206,7 +206,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $item->date_start->toDateString() }}</td>
                                 <td class="text-center">{{ $item->program->title }}</td>
-                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                                <td class="text-center">{{ 1 + $item->date_start->diffInDays($item->date_end) }}</td>
                             </tr>
                                 @endforeach
                             </tbody>
