@@ -32,6 +32,9 @@ class SubprogramController extends Controller
             $model = Subprogram::where('program_id', $id)
                 ->orderBy('date_start', 'DESC')->with(['program']);
             return DataTables::of($model)
+                ->addColumn('date', function ($model) {
+                    return $model->date_start->toDateString();
+                })
                 ->addColumn('action', function ($model) {
                     return view('layouts.partials._action', [
                         'model' => $model,
@@ -91,6 +94,7 @@ class SubprogramController extends Controller
             'range_age_5' => ['nullable', 'numeric'],
             'range_age_6' => ['nullable', 'numeric'],
             'attachment' => ['nullable', 'string'],
+            'status' => ['required'],
         ]);
         $request['user_id'] = auth()->user()->id;
         $program->subprogram()->create($request->all());
@@ -161,6 +165,7 @@ class SubprogramController extends Controller
             'range_age_5' => ['nullable', 'numeric'],
             'range_age_6' => ['nullable', 'numeric'],
             'attachment' => ['nullable', 'string'],
+            'status' => ['required'],
         ]);
         $subProgram = $program->subprogram()->find($subprogram);
         if (auth()->user()->can('update', $subProgram)) {

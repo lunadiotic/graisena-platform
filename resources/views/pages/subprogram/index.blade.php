@@ -29,6 +29,7 @@
                         <span>Basic Data Table</span>
                         @canany(['isAdmin', 'isContributor'])
                         <span>
+                            <a href="{{ route('program.index') }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Back</a>
                             <a href="{{ route('subprogram.create', $program->id) }}" class="btn btn-sm btn-primary" style="margin-top: -6px;">Create</a>
                         </span>
                         @endcanany
@@ -80,7 +81,7 @@
             ajax: "{{ route('subprogram.index', $program->id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'date_start', name: 'date_start'},
+                {data: 'date', name: 'date'},
                 {data: 'program.title', name: 'program.title'},
                 {data: 'location', name: 'location'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}

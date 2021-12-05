@@ -81,7 +81,7 @@
             ajax: "{{ route('stock.index', $nursery->id) }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'date_check', name: 'date_check'},
+                {data: 'date', name: 'date'},
                 {data: 'seed', name: 'seed'},
                 {data: 'total_seed', name: 'total_seed'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}

@@ -26,6 +26,9 @@ class StockController extends Controller
             $model = Stock::where('nursery_id', $id)
                 ->orderBy('date_check', 'DESC')->with(['nursery']);
             return DataTables::of($model)
+                ->addColumn('date', function ($model) {
+                    return $model->date_check->toDateString();
+                })
                 ->addColumn('seed', function ($model) {
                     return $model->seed->title;
                 })
