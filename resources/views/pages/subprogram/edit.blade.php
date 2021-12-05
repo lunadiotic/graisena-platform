@@ -154,8 +154,8 @@
                                     <label for="status" class="form-label">Status</label>
                                     <select name="status" class="form-control  @error('status ') is-invalid @enderror">
                                         <option value="done" {{ old('status', $data->status )=='done' ? 'selected' : '' }}>Selesai</option>
-                                        <option value="progress" {{ old('status', $data->status)=='progress' ? 'selected' : '' }}>Sedang Berjalan</option>
-                                        <option value="soon" {{ old('status', $data->status)=='soon' ? 'selected' : '' }}>Yang Akan Datang</option>
+                                        <option value="ongoing" {{ old('status', $data->status)=='ongoing' ? 'selected' : '' }}>Sedang Berlangsung</option>
+                                        <option value="soon" {{ old('status', $data->status)=='soon' ? 'selected' : '' }}>Akan Datang</option>
                                     </select>
                                     @error('gender')
                                     <span class="text-danger" role="alert">

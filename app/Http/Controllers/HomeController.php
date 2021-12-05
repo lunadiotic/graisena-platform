@@ -34,7 +34,7 @@ class HomeController extends Controller
             'distribution' => Distribution::count(),
             'nursery' => Nursery::count(),
             'done' => Subprogram::where('status', 'done')->get(),
-            'progress' => Subprogram::where('status', 'progress')->get(),
+            'ongoing' => Subprogram::where('status', 'ongoing')->get(),
             'soon' => Subprogram::where('status', 'soon')->get()
         ];
         return view('home')->with($data);

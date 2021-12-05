@@ -159,7 +159,7 @@
         <div class="col-md-6 col-xl-4">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
-                    <h4>Sedang Berjalan</h4>
+                    <h4>Sedang Berlangsung</h4>
                     <div class="table-responsive">
                         <table class="table mt-4 table-centered">
                             <thead>
@@ -171,7 +171,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($progress as $item)
+                                @foreach ($ongoing as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $item->date_start->toDateString() }}</td>
@@ -189,7 +189,7 @@
         <div class="col-md-6 col-xl-4">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
-                    <h4>Yang Akan Datang</h4>
+                    <h4>Akan Datang</h4>
                     <div class="table-responsive">
                         <table class="table mt-4 table-centered">
                             <thead>
