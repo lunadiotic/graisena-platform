@@ -28,12 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-    //     $start_date = Carbon::createFromFormat('d-m-Y', '3-10-2020');
-    // $end_date = Carbon::createFromFormat('d-m-Y', '15-11-2020');
-
-    // $different_days = $start_date->diffInDays($end_date);
-
-    // return $different_days;
         $data = [
             'subprogram' => Subprogram::count(),
             'volunteer' => Volunteer::count(),
@@ -43,7 +37,6 @@ class HomeController extends Controller
             'progress' => Subprogram::where('status', 'progress')->get(),
             'soon' => Subprogram::where('status', 'soon')->get()
         ];
-        // dd($progress);
         return view('home')->with($data);
     }
 }
