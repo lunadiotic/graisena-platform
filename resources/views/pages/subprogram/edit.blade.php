@@ -149,6 +149,21 @@
                                     @enderror
                                 </div>
                             </div> <!-- end col -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select name="status" class="form-control  @error('status ') is-invalid @enderror">
+                                        <option value="done" {{ old('status', $data->status )=='done' ? 'selected' : '' }}>Selesai</option>
+                                        <option value="progress" {{ old('status', $data->status)=='progress' ? 'selected' : '' }}>Sedang Berjalan</option>
+                                        <option value="soon" {{ old('status', $data->status)=='soon' ? 'selected' : '' }}>Yang Akan Datang</option>
+                                    </select>
+                                    @error('gender')
+                                    <span class="text-danger" role="alert">
+                                        <small><strong>{{ $message }}</strong></small>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div> <!-- end col -->
                         </div>
                         <!-- end row-->
                     </div> <!-- end card body-->

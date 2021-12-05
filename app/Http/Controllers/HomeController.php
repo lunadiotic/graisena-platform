@@ -7,6 +7,7 @@ use App\Nursery;
 use App\Subprogram;
 use App\Volunteer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,10 @@ class HomeController extends Controller
             'subprogram' => Subprogram::count(),
             'volunteer' => Volunteer::count(),
             'distribution' => Distribution::count(),
-            'nursery' => Nursery::count()
+            'nursery' => Nursery::count(),
+            'done' => Subprogram::where('status', 'done')->get(),
+            'progress' => Subprogram::where('status', 'progress')->get(),
+            'soon' => Subprogram::where('status', 'soon')->get()
         ];
         return view('home')->with($data);
     }

@@ -125,6 +125,99 @@
     </div>
     <!-- end row-->
 
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <div class="widget-rounded-circle card">
+                <div class="card-body">
+                    <h4>Selesai</h4>
+                    <div class="table-responsive">
+                        <table class="table mt-4 table-centered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">#</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Program</th>
+                                <th class="text-center">Hari</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($done as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $item->date_start->toDateString() }}</td>
+                                <td class="text-center">{{ $item->program->title }}</td>
+                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                            </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> <!-- end table-responsive -->
+                </div>
+            </div> <!-- end widget-rounded-circle-->
+        </div> <!-- end col-->
+
+        <div class="col-md-6 col-xl-4">
+            <div class="widget-rounded-circle card">
+                <div class="card-body">
+                    <h4>Sedang Berjalan</h4>
+                    <div class="table-responsive">
+                        <table class="table mt-4 table-centered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">#</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Program</th>
+                                <th class="text-center">Hari</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($progress as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $item->date_start->toDateString() }}</td>
+                                <td class="text-center">{{ $item->program->title }}</td>
+                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                            </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> <!-- end table-responsive -->
+                </div>
+            </div> <!-- end widget-rounded-circle-->
+        </div> <!-- end col-->
+
+        <div class="col-md-6 col-xl-4">
+            <div class="widget-rounded-circle card">
+                <div class="card-body">
+                    <h4>Yang Akan Datang</h4>
+                    <div class="table-responsive">
+                        <table class="table mt-4 table-centered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">#</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Program</th>
+                                <th class="text-center">Hari</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($soon as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $item->date_start->toDateString() }}</td>
+                                <td class="text-center">{{ $item->program->title }}</td>
+                                <td class="text-center">{{ $item->date_start->diffInDays($item->date_end) }}</td>
+                            </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> <!-- end table-responsive -->
+                </div>
+            </div> <!-- end widget-rounded-circle-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row-->
+
 </div>
 @endsection
 
