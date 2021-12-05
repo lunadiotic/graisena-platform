@@ -44,7 +44,12 @@ class VolunteerRegController extends Controller
             'affiliate' => ['nullable'],
             'skill' => ['nullable']
         ]);
-
+        $no = 1;
+        $latest = Volunteer::orderBy('id', 'DESC')->first();
+        if($latest) {
+            $no += $latest->id;
+        }
+        $request['identity_number'] = $request->province_id.$request->regency_id.$no;
         Volunteer::create($request->all());
 
         return redirect()->back()->withStatus(
