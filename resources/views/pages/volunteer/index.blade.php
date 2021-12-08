@@ -32,8 +32,18 @@
                     <h4 class="header-title d-flex justify-content-between">
                         <span>Basic Data Table</span>
                         <span>
-                            <a href="{{ route('volunteer.create') }}" class="btn btn-sm btn-primary"
-                                style="margin-top: -6px;">Create</a>
+                            <form action="{{ route('report.sheet.volunteer') }}">
+                                <div class="input-group" style="margin-top: -6px;">
+                                    <select name="regency_id" id="regency_id" class="form-control input-sm">
+                                        <option value="0">All</option>
+                                        @foreach ($volunteerRegency as $item)
+                                            <option value="{{ $item->regency->id }}">{{ $item->regency->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn input-group-text btn-sm btn-dark waves-effect waves-light" type="submit">Export</button>
+                                    <a href="{{ route('volunteer.create') }}" class="btn btn-primary">Create</a>
+                                    </div>
+                            </form>
                         </span>
                     </h4>
                     <table id="datatable" class="table dt-responsive nowrap w-100">

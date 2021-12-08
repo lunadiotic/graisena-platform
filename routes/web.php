@@ -39,5 +39,8 @@ Route::resource('user', 'UserController')->middleware('can:isAdmin');
 Route::get('/profile', 'ProfileController@index')->name('profile.index');
 Route::post('/profile', 'ProfileController@store')->name('profile.store');
 
+// Report
+Route::get('/report/sheet/volunteer', 'ReportController@volunteerSheet')->name('report.sheet.volunteer');
+
 // Download Attach File
 Route::get('/download/{file}/program', 'DownloadController@program')->name('download.program');
