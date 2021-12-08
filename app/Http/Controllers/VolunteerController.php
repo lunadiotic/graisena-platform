@@ -41,7 +41,10 @@ class VolunteerController extends Controller
                 ->rawColumns(['action'])->make(true);
         }
 
-        return view('pages.volunteer.index');
+        $volunteerRegency = Volunteer::with(['regency'])->distinct()->get(['regency_id']);
+        return view('pages.volunteer.index', [
+            'volunteerRegency' => $volunteerRegency
+        ]);
     }
 
     /**
