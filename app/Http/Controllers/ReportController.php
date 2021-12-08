@@ -10,6 +10,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function volunteerSheet(Request $request)
     {
         $data = Volunteer::with(['province', 'regency'])
